@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+    <style>
+        .container{
+            width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <form action="regStu" method="post">
+           <table>
+                <div>
+                    학번
+                    <input type="text" name="stuNo" placeholder="학번" >
+                </div>
+                <div>
+                    이름
+                    <input type="text" name="stuName" placeholder="이름">
+                </div>
+                <div>
+                    국어점수
+                    <input type="text" name="korScore" placeholder="국어점수">
+                </div>
+                <div>
+                    영어점수
+                    <input type="text" name="engScore" placeholder="영어점수">
+                </div>
+                <div>
+                    학생소개
+                    <textarea name="intro" cols="30" rows="5" placeholder="소개"></textarea>
+                </div>
+                <div>
+                    <input type="submit" value="등록 완료">
+                </div>
+           </table>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+
+    /* .c1,.t1{
+        border: 1px solid black;
+       
+        width: 800px;
+        height: 500px;
+    } */
+    .container{
+        margin: 0 auto;
+        width: 90%;
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    /* > : 자식 태그 */
+        .container > tbody > tr, .container > tbody > tr > td{
+            border: 1px solid black;
+            height: 500px;
+            vertical-align: top;
+    }
+    
+    #stu-list-table{
+        border: 1px solid black;
+        border-collapse: collapse;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #stu-list-table tr, #stu-list-table td{
+        border: 1px solid black;
+    }
+
+    /*  :hover : 마우스 올리면~ */
+    #stu-list-table tr:hover{
+        background-color:rgba(180, 235, 204, 0.3);
+    }
+
+    /* ' '(한칸 띄우기) : 자손 태그  */
+    /* .container tr{
+
+    } */
+
+
+    .stu-detail-div table{
+        width: 90%;
+        margin: 0 auto;
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    .stu-detail-div table tr, .stu-detail-div table tr td{
+        border: 1px solid black;
+    }
+
+    .stu-detail-div table > div:first-child{
+        margin-bottom: 30px;
+    }
+
+    #name-span:hover{
+        cursor: pointer;
+        color: #000;
+        font-weight: bold;
+        font-size: medium;
+    }
+    .scoreInput{
+        width: 30px;
+    }
+
+    
+    

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+    <style>
+        .wrap{
+            width: 500px;
+            margin: 0 auto;
+            height: 800px;
+            text-align: center;
+        }
+        table{
+            margin: 0 auto;
+            width: 600px;
+            
+            
+        }
+        tr,td{
+            border: 1px solid black;
+            height: 30px;
+            background-color: darkgrey;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        
+        <div>
+            <h2>이력서 확인</h2>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        이름
+                    </td>
+                    <td th:text="${name}">
+                        
+                    </td>
+                    <td>
+                        연락처
+                    </td>
+                    <td>
+                        [[${tel}]]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        학력
+                    </td>
+                    <td>
+                        [[${academic}]]
+                    </td>
+                    <td>
+                        지원구분
+                    </td>
+                    <td>
+                        [[${old}]]
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        자격증 정보
+                    </td>
+                    <td >
+                        [[${allQualification}]]
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        경력 정보
+                    </td>
+                    <td >
+                        [[${allCareer}]]
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                       자기소개 
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        [[${myInfo}]]
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+</body>
+</html>

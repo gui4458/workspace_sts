@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/personal_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+
+    <style>
+        .cart-list-table>thead {
+            --bs-table-bg: rgba(0, 0, 0, 0.767);
+            --bs-table-color: white;
+
+
+        }
+    </style>
+
+    <!-- html 코드 작성 -->
+
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <table class="cart-list-table table table-striped table-hover text-center align-middle">
+                    <colgroup>
+                        <col width="5%">
+                        <col width="5%">
+                        <col width="30%">
+                        <col width="10%">
+                        <col width="30%">
+                        <col width="10%">
+                        <col width="*">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <td>NO</td>
+                            <td>
+                                <input id="chkAll" type="checkbox" class="form-check-input" onclick="chkbAll()" checked>
+                            </td>
+                            <td>상품정보</td>
+                            <td>가격</td>
+                            <td>개수</td>
+                            <td>총가격</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:if="${#lists.isEmpty(items)}">
+                            <tr>
+                                <td colspan="7">장바구니에 물품이 없습니다.</td>
+                            </tr>
+                        </th:block>
+                        <th:block th:each="item, state : ${items}">
+                            <tr>
+                                <td>[[${#lists.size(items) - state.index}]]</td>
+                                <td>
+                                    <input type="checkbox" class="form-check-input chk" onclick="setFinalPrice()" checked>
+                                </td>
+                                <td>
+                                    <div class="row align-items-center">
+                                        <div class="col-4">
+                                            <img width="100%" class="subImg"
+                                                th:src="@{'/upload/' + ${item.attachedFileName}}">
+                                        </div>
+                                        <div class="col-8 text-start">[[${item.itemName}]]</div>
+                                    </div>
+                                </td>
+                                <td>[[${#numbers.formatCurrency(item.itemPrice)}]]</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <input type="number" class="form-control cnt" th:value="${item.cartCnt}">
+                                        </div>
+                                        <div class="col-4 d-grid">
+                                            <input type="button" class="btn btn-primary" value="변경"
+                                                th:onclick="goUpdate(this,[[${item.cartCode}]],[[${item.totalPrice}]],[[${item.itemPrice}]])">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>[[${#numbers.formatCurrency(item.totalPrice)}]]</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col d-grid">
+                                            <input type="button" class="btn btn-primary" value="삭제"
+                                                th:onclick="goDelete([[${item.cartCode}]])">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row mb-3 mt-3">
+                <div class="col text-end">
+                    <span class="h3">총 가격 : <span id="finalPrice-span"></span></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-5 col-1 d-grid">
+                    <input type="button" class="btn btn-primary" value="선택 구매" onclick="chkBuy()">
+                </div>
+                <div class="col-1 d-grid">
+                    <input type="button" class="btn btn-primary" value="선택 삭제" onclick="chkDelete()">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/js/content/cart/cart_list.js"></script>
+</th:block>
+
+</html>

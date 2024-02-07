@@ -1,0 +1,31 @@
+/* 모든 html에서 공통적으로 적용되는 css */
+/* ex: 폰트 */
+
+*{
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid black; */
+}
+.header{
+    margin-top: 150px;
+    background-color: rgba(67, 133, 255, 0.842);
+    color: white;
+    text-align: center;
+}
+.header:hover{
+    cursor: pointer;
+}
+.header div{
+    border: 1px solid white;
+}
+@font-face {
+    font-family: 'LeferiPoint-BlackA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    font-family: 'LeferiPoint-BlackA';
+}
+
+

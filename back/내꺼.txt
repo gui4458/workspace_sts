@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="boardMapper">
+    <resultMap id="board" type="com.green.Board2.vo.BoardVO">
+        <result column="BOARD_NUM" property="boardNum"/>
+        <result column="TITLE" property="title"/>
+        <result column="CONTENT" property="content"/>
+        <result column="WRITER" property="writer"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="READ_CNT" property="readCnt"/>
+    </resultMap>
+
+
+
+<!--글쓰기-->
+    <insert id="insertBoard">
+        INSERT INTO BOARD(
+            TITLE
+            ,CONTENT
+            ,WRITER
+
+        ) VALUES (
+
+            #{title}
+            ,#{content}
+            ,#{writer}
+
+        )
+    </insert>
+<!--리스트-->
+    <select id="selectBoardList" resultMap="board">
+        SELECT BOARD_NUM
+            ,TITLE
+            ,CONTENT
+            ,WRITER
+            ,CREATE_DATE
+            ,READ_CNT
+        FROM BOARD
+    </select>
+<!--디테일-->
+    <select id="selectBoardDetail" resultMap="board">
+        SELECT BOARD_NUM
+            ,WRITER
+            ,CREATE_DATE
+            ,TITLE
+            ,CONTENT
+            ,READ_CNT
+        FROM BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </select>
+<!--삭제-->
+    <delete id="deleteBoard">
+        DELETE FROM BOARD
+        WHERE BOARD_NUM = #{boardNum}
+
+    </delete>
+<!--글수정-->
+    <update id="boardUpdate">
+        UPDATE BOARD
+        SET
+            TITLE = #{title}
+            , CONTENT = #{content}
+        WHERE BOARD_NUM = #{boardNum}
+    </update>
+
+<!--    조회수-->
+    <update id="cntUp">
+        UPDATE BOARD
+        SET
+            READ_CNT = READ_CNT + 1
+        WHERE BOARD_NUM = #{boardNum}
+    </update>
+
+<!--    검색 -->
+    <select id="Search" resultMap="board">
+        SELECT BOARD_NUM
+            ,TITLE
+            ,CREATE_DATE
+            ,WRITER
+            ,READ_CNT
+        FROM BOARD
+        WHERE #{searchOption} LIKE CONCAT('%',#{searchText},'%')
+
+    </select>
+
+
+</mapper>

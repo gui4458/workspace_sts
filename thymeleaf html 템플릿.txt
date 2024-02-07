@@ -1,0 +1,17 @@
+"thymeleaf html" : {
+        "scope": "html",
+        "prefix": "thymeleaf-html",
+        "body": [
+            "<!DOCTYPE html>",
+            "<html lang=\"ko\" xmlns:th=\"http://www.thymeleaf.org\">",
+            "<head>",
+            "<meta charset=\"UTF-8\">",
+            "<title>$1</title>",
+            "</head>",
+            "<body>",
+            "$2",
+            "</body>",
+            "</html>"
+        ],
+        "description": "thymeleaf + html 자동코드"
+    }

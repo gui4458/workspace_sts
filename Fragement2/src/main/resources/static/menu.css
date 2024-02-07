@@ -1,0 +1,8 @@
+.menu li{
+    padding: 20px 30px;
+    display: inline-block;
+    background-color: rgb(250, 235, 215);
+    border: 1px solid white;
+    font-weight: bold;
+    
+}

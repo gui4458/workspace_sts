@@ -1,0 +1,32 @@
+/* 모든 html에서 공통적으로 적용되는 css */
+/* ex: 폰트 */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'LeferiPoint-BlackA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    font-family: 'LeferiPoint-BlackA';
+}
+
+/* 쇼핑몰 제목 크기 변경 */
+.main-title{
+    font-size: 3.5rem;
+}
+.main-title:hover{
+    cursor: pointer;
+    font-size: 3.5rem;
+}
+.joinhover:hover{
+    cursor: pointer;
+}
+.header-div{
+    margin-bottom: 3rem;
+}

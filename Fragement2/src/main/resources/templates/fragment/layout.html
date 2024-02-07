@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<th:block layout:fragment="content_css">
+
+</th:block>
+<link rel="stylesheet" href="/layout.css">
+<link rel="stylesheet" href="/menu.css">
+<style>
+    h3{
+        background-color: aqua;
+    }
+</style>
+</head>
+<body>
+    <h3>layout.html 파일입니다.</h3>
+    <div class="menu">
+        <!-- fragment폴더 안의 header.html로 영역을 대체하겠다. -->
+        <!-- fragment폴더 안의 header.html을 앞으로 headerFragment라고 부르겠다. -->
+        <th:block  th:replace="~{fragment/menu :: menuFragment}"></th:block>
+    </div>
+    <div class="side-menu">
+        <th:block th:replace="~{fragment/side_menu :: sideFragment}"></th:block>
+    </div>
+    <div class="list">
+        <th:block layout:fragment="contentFragment"></th:block>
+    </div>
+    <div class="footer">
+        <th:block th:replace="~{fragment/footer :: footerFragment}"></th:block>
+
+    </div>
+
+</body>
+</html>

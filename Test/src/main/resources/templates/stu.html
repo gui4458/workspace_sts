@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <div>
+                        <div>
+                            <select >
+                                <option value="0">전체</option>
+                                <th:block th:each="class : ${classInfo}">
+                                <option value="${class.classNum}">[[${class.className}]]</option>
+                            </select>
+                        </div>
+                    
+                        <table>
+                            <tr>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+
+
+
+
+
+
+
+
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+동기 통신 - 디비작업이 발생하면 페이지 전환이 무조건 발생
+
+비동기 통신 - 
+
+javascript -> fetch 
+jquery -> ajax (요즘 안쓰는것)
+react -> axios(요즘 뜨는것) 
+
+@ResponseBody : 해당 메소드는 비동기 통신을 사용하기 때문에
+메소드의 마지막 return으로 페이지 전환 하지 않겠다를
+스프링에게 알려주는 코드
+
+fetch(
+)
+   ↓
+.then(
+)
+   ↓
+.then(
+)
+실행 실패시 바로 catch
+.catch(
+)
+
+fetch를 통해 컨트롤러 이동 후 첫번째 then실행 후 두번째 then 실행

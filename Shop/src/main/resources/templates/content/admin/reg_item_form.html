@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/admin_layout}">
+
+<th:block layout:fragment="content_css">
+    <!--html 파일이 열릴때 같이 실행되는 css-->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!--html 코드 작성-->
+    <form action="/admin/insertItem" method="post" enctype="multipart/form-data">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">상품명</label>
+                    <input type="text" name="itemName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">가격</label>
+                    <input type="text" name="itemPrice" class="form-control" id="exampleInputPassword1">
+                </div>
+            </div>
+            
+            <div class="col-3">
+                <label for="exampleInputPassword1" class="form-label">　</label>
+                <select class="form-select" name="cateCode" aria-label="Default select example" style="width: 200px;">
+                    
+                    <th:block th:if="${!#lists.isEmpty(cateList)}" th:each="cate:${cateList}">
+                    <option th:value="${cate.cateCode}">[[${cate.cateName}]]</option>
+                
+                    </th:block>
+                </select>
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">상품소개</label>
+                    <textarea class="form-control" name="itemIntro" id="exampleFormControlTextarea1" rows="3"
+                        style="width: 690px;height: 200px;"></textarea>
+                </div>
+            </div>
+            <div>
+                <div class="col-12">
+                    <label for="" class="form-labal">상품 대표 이미지</label>
+                    <input class="form-control" type="file" name ="mainImg"></div>
+                <div class="col-12">
+                    <label for="" class="form-labal">상품 상세 이미지</label>
+                    <input class="form-control" type="file" name ="detailImg" multiple></div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-primary" style="margin-top: 8px;float: right;">상품등록</button>
+
+            </div>
+                
+        </div>
+    </form>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!--html 파일이 열릴때 같이 실행되는 js-->
+    <!-- <script src="/"></script> -->
+</th:block>
+
+</html>

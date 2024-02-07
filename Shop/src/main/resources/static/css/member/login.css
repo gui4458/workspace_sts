@@ -1,0 +1,23 @@
+
+.container{
+    width: 1300px;
+    margin: 0 auto;
+   
+}
+.login-table{
+    border: 2px solid black;
+    margin: 50px auto;
+    width: 500px; 
+    height: 500px;
+    
+}
+.login-table tr, .login-table td{
+    
+    margin: 0 auto;
+}
+.input-group-text{
+    width: 150px;
+}
+.btn btn-primary{
+    size: 50px 50px;
+}

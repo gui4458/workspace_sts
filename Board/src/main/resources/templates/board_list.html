@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+    <style>
+        tr, td{
+            border: 1px solid white;
+            background-color: cornflowerblue;
+            border-radius: 6px;
+        }
+        
+        .sub{
+            background-color: cornflowerblue;
+            margin-top: 6px;
+            border-radius: 7px;
+            
+            
+        }
+        .container{
+            margin: 0 auto;
+            width: 400px;
+        }
+        table{
+            border: 1px solid white;
+            width: 100%;
+            border-collapse: collapse;
+        
+        }
+        .btn-div{
+            text-align: center;
+            background-color: cornflowerblue;
+            margin-top: 9px;
+            margin-left: 40%;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                    글번호 
+                    </td>
+                    <td>
+                        제목
+                    </td>
+                    <td>
+                        작성자
+                    </td>
+                    <td>
+                        작성일
+                    </td>
+                    <td>
+                        조회수
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- th:unless : else -->
+                <th:block th:if="${#lists.isEmpty(boardList)}">
+                    <tr>
+                        <td colspan="5">등록된 게시글이 없습니다.</td>
+                    </tr>
+                </th:block>
+                <th:block th:each="board : ${boardList}" >
+                    <tr>
+                        <td>
+                           [[${board.boardNum}]]
+                        </td>
+                        <td>
+                            <a th:href="@{board_detail(boardNum=${board.boardNum})}">[[${board.boardTitle}]]</a>
+                        </td>
+                        <td>
+                            [[${board.writer}]]
+                        </td>
+                        <td>
+                            [[${board.createDate}]]
+                        </td>
+                        <td>
+                            [[${board.readCnt}]]
+                        </td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+        <input class="btn-div" type="button" value="글쓰기" th:onclick="|location.href='@{regboard}'|">
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+    <style>
+        tr, td{
+            border: 1px solid white;
+            background-color: cornflowerblue;
+            border-radius: 6px;
+        }
+        .btn-div{
+            text-align: center;
+
+        }
+        .sub{
+            background-color: cornflowerblue;
+            margin-top: 6px;
+            border-radius: 7px;
+
+
+        }
+        .container{
+            margin: 0 auto;
+            width: 400px;
+        }
+        table{
+            border: 1px solid white;
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <form action="insertBoard" method="post">
+            <table>
+                <tr>
+                    <td>
+                        글번호
+                    </td>
+                    <td>
+                        <input type="text" name="boardNum">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        제목
+                    </td>
+                    <td>
+                        <input type="text" name="boardTitle">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        작성자
+                    </td>
+                    <td>
+                        <input type="text" name="writer">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        작성일
+                    </td>
+                    <td>
+                        <input type="date" name="createDate">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        내용
+                    </td>
+                    <td>
+                        <textarea name="boardContent" cols="30" rows="10"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="글등록">
+                    </td>
+                    
+                </tr>
+            </table>
+        </form>
+
+
+
+
+    </div>
+</body>
+</html>

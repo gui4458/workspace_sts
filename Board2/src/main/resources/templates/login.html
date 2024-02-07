@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+    <style>
+         tr, td{
+            border: 7px solid rgb(217, 248, 220);
+            background-color: rgb(117, 178, 248);
+            border-radius: 6px;
+            height: 50px;
+            
+        }
+        .btn{
+            background-color: rgb(120, 177, 252);
+            border-radius: 6px;
+            margin-top: 7px;  
+        }
+        .container{
+            margin: 0 auto;
+            width: 400px;
+            text-align: center;
+        }
+        table{
+            border: 1px solid white;
+            width: 100%;
+            border-collapse: collapse;
+    
+        }
+      
+    </style>
+</head>
+<body>
+    <img src="dog.jpg">
+    <div class="container">
+        <h1>로그인</h1>
+        <form action="/member/login" method="post">
+            <table>
+                <tr>
+                    <td>
+                        아이디  
+                    </td>
+                    <td>
+                        <input type="text" name="memberId" placeholder="(❁´◡`❁)id">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        비밀번호
+                    </td>
+                    <td>
+                        <input type="password" name="memberPw" placeholder="╰(*°▽°*)╯pw">
+                    </td>
+                </tr>
+            </table>
+            <div >
+                <input class="btn" type="button" value="게시글 보러가기" onclick="goBoardList()">
+                <input class="btn" type="submit" value="로그인">
+                <input class="btn" type="button" value="회원가입" onclick="gojoin()">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function gojoin(){
+            location.href = '/member/joinForm'
+        }
+        
+        function goBoardList(){
+            location.href = '/board/list'
+        }
+    </script>
+</body>
+</html>

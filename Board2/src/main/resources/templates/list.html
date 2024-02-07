@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    .tr1, .td1{
+       border: 7px solid rgb(217, 248, 220);
+       background-color: rgb(158, 200, 248);
+       border-radius: 6px;
+       height: 50px;
+       
+   }
+   .btn{
+       background-color: white;
+       border-radius: 6px;
+       margin-top: 7px;  
+       border: 5px solid rgb(184, 255, 174);
+   }
+   .container{
+       margin: 0 auto;
+       width: 500px;
+       text-align: center;
+   }
+   .title{
+    border: 1px solid white;
+       width: 100%;
+       border-collapse: collapse;
+   }
+   table{
+    
+       border: 1px solid white;
+       width: 100%;
+       border-collapse: collapse;
+
+   }
+   .searchbar{
+        margin-top: 6px;
+   }
+</style>
+</head>
+<body>
+    <div>
+        <th:block th:if="${session.loginInfo != null}">
+            
+            [[${session.loginInfo.memberName}]]님 환영합니다.
+            <input class="btn" type="button" value="로그아웃" onclick="goLogout()">
+            
+        </th:block>
+        <th:block th:if="${session.loginInfo == null}">
+                <input type="button" value="로그인" onclick="goLogin()">
+        </th:block>
+    </div>
+    
+    <div class="container">
+        <table>
+            <thead class="title">
+                <tr class="tr1">
+                    <td class="td1">
+                        글번호
+                    </td>
+                    <td class="td1">
+                        제목
+                    </td>
+                    <td class="td1">
+                        작성자
+                    </td>
+                    <td class="td1">
+                        작성일
+                    </td>
+                    <td class="td1">
+                        조회수
+                    </td>
+                </tr>
+            </thead>
+
+            <tbody>                     <!--isEmpty = 값이없다면 -->
+                <th:block th:if="${#lists.isEmpty(boardList)}">
+                    <tr>
+                        <td colspan="5">등록된 글이 없습니다.</td>
+                    </tr>
+                </th:block>
+                <th:block th:each="board : ${boardList}">
+                    <tr class="tr1">
+                        <td>
+                            [[${board.boardNum}]]
+                        </td>
+                        <td>
+                            <a th:href="@{/board/boardDetail(boardNum=${board.boardNum})}"> [[${board.title}]] </a>
+                        </td>
+                        <td>
+                            [[${board.writer}]]
+                        </td>
+                        <td>
+                            [[${board.createDate}]]
+                        </td>
+                        <td>
+                            [[${board.readCnt}]]
+                        </td>
+                    </tr>
+             </th:block>
+            </tbody>
+        </table>
+        <!-- 페이징 코드 -->
+        <div>
+            <!-- ${searchVO.beginPage} -->
+            <!-- ${searchVO.endPage} -->
+            
+            <th:block th:if="${searchVO.prev}">
+                <a th:href="@{/board/list(nowPage=${searchVO.beginPage-1}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}"> 이전 </a>
+            </th:block>
+
+            <th:block th:each="i : ${#numbers.sequence(searchVO.beginPage, searchVO.endPage)}">
+                <a th:href="@{/board/list(nowPage=${i}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}"> [[${i}]] </a>
+            </th:block>
+            
+            <th:block th:if="${searchVO.next}">
+                <a th:href="@{/board/list(nowPage=${searchVO.endPage+1}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}"> 다음 </a>
+            </th:block>
+           
+        </div>
+        <div>
+            <th:block th:if="${session.loginInfo != null}">
+                <input class="btn" type="button" value="글쓰기" onclick="boardForm()">
+    
+            </th:block>
+            
+        </div>
+        <div>
+            <form action="/board/list" method="post">
+                <table class="searchbar">
+                    <tr>
+                        <td>
+                            <!-- 이전 list.html에서 제목을 선택했다면 -->
+                            <!-- 새로 열리는 list.html에서는 제목이 선택 -->
+                            <!-- 이전 list.html에서 작성자를 선택했다면 -->
+                            <!-- 새로 열리는 list.html에서는 작성자를 선택 -->
+                            <select name="searchOption">
+                                <option th:selected="${searchVO.searchOption}==NULL">--검색옵션--</option>
+                                <option value="TITLE" th:selected="${searchVO.searchOption}=='TITLE'">제목</option>
+                                <option value="WRITER" th:selected="${searchVO.searchOption}=='WRITER'">작성자</option>
+                            </select>
+                            <input type="search" name="searchText" th:value="${searchVO.searchText}">
+                            <input type="submit" value="검색">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+<script>
+    function boardForm(){
+        location.href='/board/boardForm'
+    }
+    function goLogout(){
+        location.href='/member/logout'
+    }
+    function boarddetail(){
+        th.href="@{boardDetail(boardNum=${board.boardNum})}"
+    }
+    function goLogin(){
+        location.href='/member/loginForm'
+    }
+    function goSearch(){
+        location.href='/board/titleSearch'
+    }
+</script>
+
+</body>
+</html>

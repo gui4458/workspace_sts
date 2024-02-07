@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+    <style>
+        .wrap{
+        width: 500px;
+        margin: 0 auto;
+        height: 500px;
+        text-align: center;
+        
+        }
+        table{
+            background-color: lightblue;
+            border: 2px solid black;
+            width: 500px;
+            border-collapse: collapse;
+        }
+        tr,td{
+            height: 30px;
+            border: 1px solid black;
+        }
+        
+        
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <table>
+            <tr>
+                <td>
+                   아이디  
+                </td>
+                <td>
+                    [[${regVO.id}]]
+                </td>
+                <td>
+                    이름
+                </td>
+                <td>
+                    [[${regVO.name}]]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    연락처 
+                </td>
+                <td>
+                    <th:block th:each="each : ${regVO.tel}">
+                        [[${each}]]
+                    </th:block>
+                </td>
+                <td>
+                    이메일
+                </td>
+                <td>
+                    [[${regVO.email}]]
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    생일 
+                </td>
+                <td colspan="3">
+                    [[${regVO.birth}]]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    관심레슨   
+                </td>
+                <td colspan="3">
+                    <th:block th:each="each : ${regVO.lesson}">
+                        [[${each}]]
+                    </th:block>
+                </td>
+                
+            </tr>
+            <tr style="height: 150px;">
+                <td>
+                    자기소개
+                </td>
+                <td colspan="3">
+                    [[${regVO.info}]]
+                </td>
+            </tr>
+            <tr style="border: none;">
+                <td colspan="4">
+                    <span><input style="margin-left: 9%; background-color: ivory;" type="submit" value="뒤로가기" ></span>
+                    <span><input type="submit" value="회원가입" style="background-color: ivory;"></span>
+                </td>
+            </tr>
+
+
+
+
+
+
+        </table>
+
+
+
+
+
+
+
+
+
+    </div>
+</body>
+</html>

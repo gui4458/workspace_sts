@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="adminMapper">
+
+    <select id="selectNextItemCode" resultType="int">
+        SELECT IFNULL(MAX(ITEM_CODE), 0) + 1
+        FROM SHOP_ITEM;
+    </select>
+
+    <insert id="insertItem">
+        INSERT INTO SHOP_ITEM(
+            ITEM_CODE
+            ,ITEM_NAME
+            ,ITEM_PRICE
+            ,ITEM_INTRO
+            ,CATE_CODE
+        )VALUES(
+            #{itemCode}
+            ,#{itemName}
+            ,#{itemPrice}
+            ,#{itemIntro}
+            ,#{cateCode}
+        )
+    </insert>
+
+    <insert id="insertImgs">
+        INSERT INTO ITEM_IMAGE(
+            ORIGIN_FILE_NAME
+            ,ATTACHED_FILE_NAME
+            ,IS_NAME
+            ,ITEM_CODE
+        )VALUES
+        <foreach collection="imgList" item="img" separator=",">
+            (#{img.originFileName}
+            ,#{img.attachedFileName}
+            ,#{img.isName}
+            ,#{img.itemCode})
+        </foreach>
+    </insert>
+
+    <select id="selectBuyList" resultMap="buyMapper.shopBuy">
+        SELECT BUY_CODE
+            ,MEMBER_ID
+            ,BUY_PRICE
+            ,LEFT(BUY_DATE,11) BUY_DATE
+        FROM SHOP_BUY
+        <if test='searchText != null and !searchText.equals("")'>
+            WHERE ${searchOption} LIKE CONCAT('%',#{searchText},'%')
+            AND DATE_FORMAT(BUY_DATE, '%Y-%m-%d') > #{from}
+            AND #{to} > DATE_FORMAT(BUY_DATE, '%Y-%m-%d')
+
+        </if>
+        ORDER BY BUY_DATE DESC
+    </select>
+
+    <select id="selectDetailBuyList" resultMap="buyMapper.shopBuy">
+        SELECT D.BUY_CODE
+        ,D.ITEM_CODE
+        ,ITEM_NAME
+        ,ATTACHED_FILE_NAME
+        ,BUY_CNT
+        ,MEMBER_ID
+        ,TOTAL_PRICE
+        ,LEFT(BUY_DATE,11) BUY_DATE
+        ,BUY_PRICE
+        FROM buy_detail D JOIN shop_item I
+        ON D.ITEM_CODE = I.ITEM_CODE
+        JOIN item_image IMA
+        ON I.ITEM_CODE = IMA.ITEM_CODE
+        JOIN shop_buy B
+        ON B.BUY_CODE = D.BUY_CODE
+        WHERE IS_NAME = 'Y'
+        AND D.BUY_CODE = #{buyCode}
+        ORDER BY BUY_CODE ASC;
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

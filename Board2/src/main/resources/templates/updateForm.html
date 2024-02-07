@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    tr, td{
+       border: 7px solid rgb(217, 248, 220);
+       background-color: rgb(117, 178, 248);
+       border-radius: 6px;
+       height: 50px;
+       
+   }
+   .btn{
+       background-color: rgb(120, 177, 252);
+       border-radius: 6px;
+       margin-top: 7px;  
+   }
+   .container{
+       margin: 0 auto;
+       width: 400px;
+       text-align: center;
+   }
+   table{
+       border: 1px solid white;
+       width: 100%;
+       border-collapse: collapse;
+
+   }
+</style>
+</head>
+<body>
+
+    <div class="container">
+        <form action="/board/boardUpdate" method="post">
+            <input type="hidden" name="boardNum" th:value="${board.boardNum}">
+            <table>
+                <tr>
+                    <td>
+                        글번호
+                    </td>
+                    <td>
+                        [[${board.boardNum}]]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        제목
+                    </td>
+                    <td>
+                        <input type="text" name="title">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        작성자
+                    </td>
+                    <td>
+                        [[${board.writer}]]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        작성일
+                    </td>
+                    <td>
+                        [[${board.createDate}]]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        내용
+                    </td>
+                    <td>
+                        <input type="text" name="content">
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="수정완료">
+        </form>
+    </div>
+</body>
+</html>

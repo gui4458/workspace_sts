@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+    <div>
+        <h1>검색결과</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        글번호
+                    </td>
+                    <td>
+                        제목
+                    </td>
+                    <td>
+                        작성일                 
+                    </td>
+                    <td>
+                        작성자
+                    </td>
+                    <td>
+                        조회수               
+                    </td>
+                </tr>
+            </thead>
+            <tbody>                     <!--isEmpty = 값이없다면 -->
+                <th:block th:if="${#lists.isEmpty(list)}">
+                    <tr>
+                        <td colspan="5">검색 글이 없습니다.</td>
+                    </tr>
+                </th:block>
+                <th:block th:each="board : ${list}">
+                    <tr class="tr1">
+                        <td>
+                            [[${board.boardNum}]]
+                        </td>
+                        <td>
+                            <a th:href="@{boardDetail(boardNum=${board.boardNum})}"> [[${board.title}]] </a>
+                        </td>
+                        <td>
+                            [[${board.createDate}]]
+                        </td>
+                        <td>
+                            [[${board.writer}]]
+                        </td>
+                        <td>
+                            [[${board.readCnt}]]
+                        </td>
+                    </tr>
+             </th:block>
+        </table>
+
+    </div>
+
+
+</body>
+</html>

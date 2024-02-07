@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+    <style>
+        tr, td{
+            border: 1px solid white;
+            background-color: cornflowerblue;
+            border-radius: 6px;
+            
+        }
+        .btn-div{
+            margin-left: 30%;
+            margin-top: 7px;           
+        }
+        .btn{
+            background-color: cornflowerblue;
+            border-radius: 6px;
+        }
+        .sub{
+            background-color: cornflowerblue;
+            margin-top: 6px;
+            border-radius: 7px;
+        }
+        .container{
+            margin: 0 auto;
+            width: 400px;
+        }
+        table{
+            border: 1px solid white;
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+       
+            <table>
+                <tr>
+                    <td>
+                        글 번호
+                    </td>
+                    <td>
+                        [[${boardInfo.boardNum}]]
+                    </td>
+                    <td>
+                        작성자
+                    </td>
+                    <td>
+                        [[${boardInfo.writer}]]
+                    </td>
+                    <td>
+                        작성일
+                    </td>
+                    <td>
+                        [[${boardInfo.createDate}]]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        제목
+                    </td>
+                    <td colspan="5">
+                        [[${boardInfo.boardTitle}]]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        내용
+                    </td>
+                    <td colspan="5">
+                        [[${boardInfo.boardContent}]]
+                    </td>
+                </tr>
+            </table>
+            <div class="btn-div">
+                <input class="btn" type="button" value="뒤로가기" th:onclick="|location.href='@{/}'|" >
+                <input class="btn" type="submit" value="수정" th:onclick="|location.href='@{getUpdate(boardNum=${boardInfo.boardNum})}'|">
+                <input class="btn" type="button" value="삭제" th:onclick="|location.href='@{deleteBoard(boardNum=${boardInfo.boardNum})}'|" >
+            </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    .tr1, .td1{
+       border: 7px solid rgb(217, 248, 220);
+       background-color: rgb(158, 200, 248);
+       border-radius: 6px;
+       height: 50px;
+       
+   }
+   .btn{
+       background-color: rgb(120, 177, 252);
+       border-radius: 6px;
+       margin-top: 7px;  
+       border: rgb(217, 248, 220);
+   }
+   .container{
+       margin: 0 auto;
+       width: 500px;
+       text-align: center;
+   }
+   .title{
+    border: 1px solid white;
+       width: 100%;
+       border-collapse: collapse;
+   }
+   table{
+    
+       border: 1px solid white;
+       width: 100%;
+       border-collapse: collapse;
+
+   }
+   .searchbar{
+        margin-top: 6px;
+   }
+</style>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <thead class="title">
+                <tr class="tr1">
+                    <td class="td1">
+                        글번호
+                    </td>
+                    <td class="td1">
+                        제목
+                    </td>
+                    <td class="td1">
+                        작성자
+                    </td>
+                    <td class="td1">
+                        작성일
+                    </td>
+                    <td class="td1">
+                        조회수
+                    </td>
+                </tr>
+            </thead>
+
+            <tbody>                     <!--isEmpty = 값이없다면 -->
+                <th:block th:if="${#lists.isEmpty(boardList)}">
+                    <tr>
+                        <td colspan="5">등록된 글이 없습니다.</td>
+                    </tr>
+                </th:block>
+                <th:block th:each="board : ${boardList}">
+                    <tr class="tr1">
+                        <td>
+                            [[${board.boardNum}]]
+                        </td>
+                        <td>
+                            <a th:href="@{boardDetail(boardNum=${board.boardNum})}"> [[${board.title}]] </a>
+                        </td>
+                        <td>
+                            [[${board.writer}]]
+                        </td>
+                        <td>
+                            [[${board.createDate}]]
+                        </td>
+                        <td>
+                            [[${board.readCnt}]]
+                        </td>
+                    </tr>
+             </th:block>
+            </tbody>
+        </table>
+        <div>
+            <input class="btn" type="button" value="글쓰기" onclick="boardForm()">
+        </div>
+        <div>
+            <table class="searchbar">
+                <tr>
+                    <td>
+                        <input type="search" name="search">
+                        <input type="button" value="검색" th:onclick="|location.href='@{board/titleSearch(boardtitle=${board.boardtitle})}'|">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+<script>
+    function boardForm(){
+        location.href='/board/boardForm'
+    }
+
+    function boarddetail(){
+        th.href="@{boardDetail(boardNum=${board.boardNum})}"
+    }
+</script>
+
+</body>
+</html>

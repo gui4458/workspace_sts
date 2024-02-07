@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+    <style>
+
+         tr, td{
+            border: 7px solid rgb(217, 248, 220);
+            
+            border-radius: 6px;
+            height: 50px;
+            
+        }
+        .tr1{
+            background-color: rgb(117, 178, 248);
+        }
+        .tr2{
+            background-color: rgb(252, 180, 72);
+        }
+        .tr3{
+            background-color: rgb(107, 243, 164);
+        }
+        .tr4{
+            background-color: rgb(225, 161, 255);
+        }
+        .tr5{
+            background-color: rgb(255, 149, 163);
+        }
+        .btn{
+            background-color: rgb(120, 177, 252);
+            border-radius: 6px;
+            margin-top: 7px;  
+            border: white;
+        }
+        .container{
+            margin: 0 auto;
+            width: 400px;
+            text-align: center;
+        }
+        table{
+            border: 1px solid white;
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+    
+    </style>
+</head>
+<body>
+    <form action="/member/join" method="post">
+        <div class="container">
+            <h1>회원가입</h1>
+                <table>
+                    <tr class="tr1">
+                        <td>
+                            아이디
+                        </td>
+                        <td>
+                            <input type="text" name="memberId" placeholder="아이디">
+                        </td>
+                    </tr>
+                    <tr class="tr2">
+                        <td>
+                            비밀번호
+                        </td>
+                        <td>
+                            <input type="password" name="memberPw" placeholder="비밀번호">
+                        </td>
+                    </tr>
+                    <tr class="tr3">
+                        <td>
+                            이름
+                        </td>
+                        <td>
+                            <input type="text" name="memberName" placeholder="이름">
+                        </td>
+                    </tr>
+                    <tr class="tr4">
+                        <td>
+                            성별
+                        </td>
+                        <td>
+                            <input type="radio" name="gender" value="남" checked>남
+                            <input type="radio" name="gender" value="여">여
+                        </td>
+                    </tr>
+                    <tr class="tr5">
+                        <td >
+                            이메일
+                        </td>
+                        <td>
+                            <input type="email" name="memberEmail" placeholder="이메일">
+                        </td>
+                    </tr>
+                </table>
+                <input class="btn"  type="button" value="뒤로가기" th:onclick="|location.href='@{/member/loginForm}'|">
+                <input class="btn" type="submit" value="가입하기">
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <form action="/car/insertCar" method="post" id="insert-btn">
+                        <div class="row justify-content-center">
+                            <div class="offset-1 col mb-3">-차량등록</div>
+                        </div>
+                        <div class="row">
+                            <div class="offset-1 col-1">제조사</div>
+                            <div class="col-1">
+                                <select name="maker">
+                                    <option value="현대" selected>현대</option>
+                                    <option value="기아">기아</option>
+                                    <option value="쌍용">쌍용</option>
+                                </select>
+                            </div>
+                            <div class="col-1">모델명</div>
+                            <div class="col-1">
+                                <input type="text" name="modelName">
+                            </div>
+                            <div class="col-1">차량가격</div>
+                            <div class="col-2">
+                                <input type="text" name="price">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end ">
+                                <input type="button" value="등록" onclick="goInsert()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">-차량 목록</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <table class="cart-list-table table table-striped table-hover text-center align-middle">
+                                <colgroup>
+                                    <col width="30%">
+                                    <col width="30%">
+                                    <col width="*">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <td>모델번호</td>
+                                        <td>모델명</td>
+                                        <td>제조사</td>
+                                    </tr>
+                                </thead>
+                                    <!-- <th:block th:if="${variable}">
+
+                                    </th:block> -->
+                                    <th:block th:each="carInfo : ${carInfoList}">
+                                        <tbody>
+                                            <tr>
+                                                <td>[[${carInfo.modelNum}]]</td>
+                                                <td>[[${carInfo.modelName}]]</td>
+                                                <td>[[${carInfo.maker}]]</td>
+                                            </tr>
+                                        </tbody>
+                                    </th:block>
+                                    
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/js/content/car_registration.js"></script>
+</th:block>
+
+</html>

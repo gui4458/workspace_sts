@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/user_layout}">
+
+<th:block layout:fragment="content_css">
+    <!--html 파일이 열릴때 같이 실행되는 css-->
+    <link rel="stylesheet" href="/css/item/item_detail.css">
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <div class="container">
+        <div class="img" style="display: flex; margin: 0 auto; justify-content: center;" >
+            <th:block th:each="img : ${item.imgList}">
+                <div class="col-2 mainImg" th:if="${img.isName eq 'Y'}">
+                    <img class="mainImg" th:src="@{'/upload/' + ${img.attachedFileName}}">
+                </div>
+            </th:block>
+            <div class="col-4" style="margin-left: 60px; text-align: center;">
+                    <div class="col" style="font-size: 30px;">
+                        [[${item.itemName}]]
+                    </div>
+                    <div class="col">
+                        [[${#numbers.formatCurrency(item.itemPrice)}]]
+                    </div>
+                    <div class="col">
+                        수량 <input type="number" class="num" style="width: 150px; text-align: center;" value="1">
+                    </div>
+                    <div class="col">
+                        총 구매가격<input class="sum" type="text" style="border: 0;" th:value="${item.itemPrice}">
+                    </div>
+                    <div class="col btn">
+                        <input type="button" value="장바구니">
+                    </div>
+                    <div class="col btn">
+                        <input type="button" value="바로 구매">
+                    </div>
+            </div>
+        </div>
+                
+        <div class="row rowTitle">
+            <div class="col-5">
+                상품소개 [[${item.itemIntro}]]
+            </div>
+        </div>
+        <div class="row">
+            <th:block th:each="img : ${item.imgList}">
+            
+                <div class="col-11 row rowTitle" th:if="${img.isName=='N'}">
+                    <img class="subImg" th:src="@{'/upload/' + ${img.attachedFileName}}">
+                </div>
+            </th:block>
+           
+        </div>
+    </div>
+
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!--html 파일이 열릴때 같이 실행되는 js-->
+    <script src="/js/item/item_detail.js"></script>
+</th:block>

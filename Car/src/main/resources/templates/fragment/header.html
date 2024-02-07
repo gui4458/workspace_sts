@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="headerFragment">
+
+ <div class="row justify-content-center">
+    <div class="col-10">
+        <div class="row header mb-3">
+            <div class="col-3">홈</div>
+            <div class="col-3">
+                <span onclick="location.href='/car/carRegistration'">차량관리</span>
+            </div>
+            <div class="col-3">
+                <span onclick="location.href='/car/salesInfo'">판매 정보 등록</span>
+            </div>
+            <div class="col-3">
+                <span onclick="location.href='/car/salesList'">판매 목록</span>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="/js/fragment/header.js"></script>
+
+
+
+</th:block>
+
+</html>

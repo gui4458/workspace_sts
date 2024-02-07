@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="testMapper">
+    <resultMap id="cla" type="com.test.Test.vo.ClassVO">
+        <id column="CLASS_CODE" property="classCode" />
+        <result column="CLASS_NAME" property="className" />
+    </resultMap>
+
+    <select id="classInfo" resultMap="cla">
+        SELECT CLASS_CODE
+            ,CLASS_NAME
+        FROM CLASS_INFO
+    </select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

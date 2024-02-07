@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    tr, td{
+       border: 7px solid rgb(217, 248, 220);
+       background-color: rgb(117, 178, 248);
+       border-radius: 6px;
+       height: 50px;
+       
+   }
+   .btn{
+       background-color: rgba(120, 177, 252,0.5);
+       border-radius: 6px;
+       margin-top: 7px;  
+       border: rgb(217, 248, 220);
+   }
+   .container{
+       margin: 0 auto;
+       width: 500px;
+       text-align: center;
+   }
+   table{
+       border: 1px solid white;
+       width: 100%;
+       border-collapse: collapse;
+
+   }
+   .comment{
+        margin-top: 15px;
+        margin: 25px 0;
+   }
+</style>
+</head>
+<body>
+
+    <div class="container">
+        <table>
+            <tr>
+                <td>
+                    글 번호
+                </td>
+                <td>
+                    [[${boardInfo.boardNum}]]
+                </td>
+                <td>
+                    작성자
+                </td>
+                <td>
+                    [[${boardInfo.writer}]]
+                </td>
+                <td>
+                    작성일
+                </td>
+                <td>
+                    [[${boardInfo.createDate}]]
+                </td>
+                <td>
+                    조회수
+                </td>
+                <td>
+                    [[${boardInfo.readCnt}]]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    제목
+                </td>
+                <td colspan="7">
+                    [[${boardInfo.title}]]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    내용
+                </td>
+                <td colspan="7">
+                    [[${boardInfo.content}]]
+                </td>
+            </tr>
+        </table>
+        <div>
+            <input class="btn" type="button" value="뒤로가기" onclick="goList()">
+            <th:block th:if="${session.loginInfo != null}">
+                <th:block th:if="${session.loginInfo.memberId == boardInfo.writer or session.loginInfo.isAdmin == 'Y'}">
+                    <input class="btn" type="button" value="수정" th:onclick="|location.href='@{/board/updateForm(boardNum=${boardInfo.boardNum})}'|">
+                    <input class="btn" type="button" value="삭제" th:onclick="goDelete([[${boardInfo.boardNum}]])" >
+                </th:block>  
+            </th:block>                        
+        </div>
+
+        <div>
+            <table class="comment">
+                <tr>
+                    <td >
+                        <form action="/reply/insertReply" method="post">
+                            <div>댓글</div> 
+                            <textarea name="content" cols="50" rows="2"></textarea>
+                            <input type="hidden" name="boardNum" th:value="${boardInfo.boardNum}">
+                            <input type="submit" value="작성하기">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            
+                <th:block th:if="${#lists.isEmpty(replyInfo)}">
+                    <tr>
+                        <td colspan="4">등록된 댓글이 없습니다.</td>
+                    </tr>
+                </th:block>
+                <th:block th:each="reply : ${replyInfo}">
+                   <div>
+                            [[${reply.writer}]]
+                    </div>
+                    <div>
+                            [[${reply.createDate}]]
+                    </div>
+                    <div>
+                            [[${reply.content}]]
+                    </div>
+                    <div>
+                        <th:block th:if="${session.loginInfo != null}">
+                            <th:block th:if="${session.loginInfo.memberId == reply.writer or session.loginInfo.isAdmin == 'Y'}">
+                                <form action="/reply/deleteReply" method="post">
+                                    <input type="hidden" name="replyNum" th:value="${reply.replyNum}">
+                                    <input type="hidden" name="boardNum" th:value="${boardInfo.boardNum}">
+                                    <input type="submit" value="삭제">
+                                </form>
+                            </th:block>  
+                        </th:block>        
+                    
+                    </div>
+                    
+             </th:block>
+        
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        //변수 선언
+        //기존에 쓰던 변수 선언 문법
+        var a; 
+        
+        
+        //추천하는 방식
+        const b = 10; //변하지 않는 값을 저장할 때는 const 사용
+        // b = 20; 10을 20으로 바꿔서 오류 발생
+        let c = 10; //변하는 값을 저장할 때는 let 사용
+        c = 20;
+
+        const name = "홍";
+        const num1 = 10;
+        const num2 = 20;
+
+        console.log('안녕하세요');
+        console.log(name + '이라는 사람은 국어점수가 ' + num1 + ' 영어점수가 ' + num2 + '입니다.');
+        // 빽틱
+        console.log(`${name}이라는 사람은 국어점수가 ${num1} 영어점수가 ${num2} 입니다`);
+
+        function goDeleteReply(replyNum,boardNum){
+            location.href=`/reply/deleteReply?replyNum=${replyNum}?boardNum=${boardNum}`
+        }
+
+        function goList(){
+            location.href='/board/list'
+        }
+        function goReply(content){
+            location.href=`/reply/insertReply?content=${content}`
+        }
+        function goUpDate(){
+            location.href='/board/updateForm'
+            
+        }
+        function goUpDetail(){
+            location.href='/board/boardDetail'
+            
+        }
+        function goDelete(boardNum){
+            // location.href='/board/deleteBoard?boardNum=' + boardNum
+            location.href = `/board/deleteBoard?boardNum=${boardNum}`
+
+
+            
+        }
+    </script>
+</body>
+</html>

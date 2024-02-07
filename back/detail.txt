@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    tr, td{
+       border: 7px solid rgb(217, 248, 220);
+       background-color: rgb(117, 178, 248);
+       border-radius: 6px;
+       height: 50px;
+       
+   }
+   .btn{
+       background-color: rgb(120, 177, 252);
+       border-radius: 6px;
+       margin-top: 7px;  
+       border: rgb(217, 248, 220);
+   }
+   .container{
+       margin: 0 auto;
+       width: 500px;
+       text-align: center;
+   }
+   table{
+       border: 1px solid white;
+       width: 100%;
+       border-collapse: collapse;
+
+   }
+</style>
+</head>
+<body>
+
+    <div class="container">
+        <table>
+            <tr>
+                <td>
+                    글 번호
+                </td>
+                <td>
+                    [[${boardInfo.boardNum}]]
+                </td>
+                <td>
+                    작성자
+                </td>
+                <td>
+                    [[${boardInfo.writer}]]
+                </td>
+                <td>
+                    작성일
+                </td>
+                <td>
+                    [[${boardInfo.createDate}]]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    제목
+                </td>
+                <td colspan="5">
+                    [[${boardInfo.title}]]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    내용
+                </td>
+                <td colspan="5">
+                    [[${boardInfo.content}]]
+                </td>
+            </tr>
+        </table>
+        <div>
+            <input class="btn" type="button" value="뒤로가기" onclick="goList()">
+
+            <th:block th:if="${session.loginInfo.memberId == boardInfo.writer or session.loginInfo.isAdmin == 'Y'}">
+                <input class="btn" type="button" value="수정" th:onclick="|location.href='@{/board/updateForm(boardNum=${boardInfo.boardNum})}'|">
+                <input class="btn" type="button" value="삭제" th:onclick="|location.href='@{/board/deleteBoard(boardNum=${boardInfo.boardNum})}'|" >
+            </th:block> 
+            
+            
+        </div>
+    </div>
+    <script>
+        function goList(){
+            location.href='/board/list'
+            
+        }
+        function goUpDate(){
+            location.href='/board/updateForm'
+            
+        }
+        
+        function goDelete(){
+            location.href='@{/board/deleteBoard(boardNum=${boardInfo.boardNum})}'
+        }
+    </script>
+</body>
+</html>
