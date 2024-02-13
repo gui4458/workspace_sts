@@ -4,6 +4,7 @@
 *{
     margin: 0;
     padding: 0;
+    
     /* border: 1px solid black; */
 }
 .header{
@@ -11,6 +12,10 @@
     background-color: rgba(67, 133, 255, 0.842);
     color: white;
     text-align: center;
+    
+    
+
+    
 }
 .header:hover{
     cursor: pointer;

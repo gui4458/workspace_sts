@@ -69,15 +69,22 @@ function insertCart(loginInfo, itemCode) {
 
 }
 
-function oneBuy(){
-    // 총 가격 정보를 input value로 세팅
-    const totalPriceStr = document.querySelector('.total-span').textContent;
-    const regex = /[^0-9]/g;
-    const totalPrice = totalPriceStr.replace(regex,'');
+function oneBuy(loginInfo){
 
-    document.querySelector('input[name="totalPrice"]').value = totalPrice;
-    // submit
-    document.querySelector('#insert-buy-form').submit();
+    if (loginInfo == null) {
+        alert('로그인 해주세요.');
+    } else if (loginInfo != null) {
+        // 총 가격 정보를 input value로 세팅
+        const totalPriceStr = document.querySelector('.total-span').textContent;
+        const regex = /[^0-9]/g;
+        const totalPrice = totalPriceStr.replace(regex,'');
+
+        document.querySelector('input[name="totalPrice"]').value = totalPrice;
+        // submit
+        document.querySelector('#insert-buy-form').submit();
+    }
+
+    
 }
 
 

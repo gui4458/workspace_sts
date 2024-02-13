@@ -2,10 +2,12 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="headerFragment">
 
- <div class="row justify-content-center">
-    <div class="col-10">
-        <div class="row header mb-3">
-            <div class="col-3">홈</div>
+ <div class="row justify-content-center ">
+    <div class="col-12">
+        <div class="row header mb-5">
+            <div class="col-3">
+                <span onclick="location.href='/car/'">홈</span>
+            </div>
             <div class="col-3">
                 <span onclick="location.href='/car/carRegistration'">차량관리</span>
             </div>
@@ -13,7 +15,7 @@
                 <span onclick="location.href='/car/salesInfo'">판매 정보 등록</span>
             </div>
             <div class="col-3">
-                <span onclick="location.href='/car/salesList'">판매 목록</span>
+                <span onclick="location.href='/sales/salesList'">판매 목록</span>
             </div>
         </div>
     </div>

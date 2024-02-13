@@ -17,6 +17,8 @@ public class ItemVO{
     private String itemIntro;
     private String regDate;
     private int cateCode;
+    private CategoryVO categoryVO;
+    private int itemStatus;
     private List<ImgVO> imgList;
 
 

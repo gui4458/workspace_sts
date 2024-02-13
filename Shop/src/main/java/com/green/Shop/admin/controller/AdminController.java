@@ -4,6 +4,7 @@ import com.green.Shop.admin.service.AdminServiceImpl;
 import com.green.Shop.buy.service.BuyServiceImpl;
 import com.green.Shop.buy.vo.BuyVO;
 import com.green.Shop.item.service.ItemServiceImpl;
+import com.green.Shop.item.vo.CategoryVO;
 import com.green.Shop.item.vo.ImgVO;
 import com.green.Shop.item.vo.ItemVO;
 import com.green.Shop.member.vo.MemberVO;
@@ -32,8 +33,9 @@ public class AdminController {
     private BuyServiceImpl buyService;
 //    상품 등록 페이지로 이동
     @GetMapping("/regItemForm")
-    public String regItemForm(Model model){
-
+    public String regItemForm(Model model
+                                ,@RequestParam(name="page", required = false, defaultValue = "regItem")String page){
+        model.addAttribute("page",page);
         model.addAttribute("cateList",itemService.selectCategory());
         return "content/admin/reg_item_form";
     }
@@ -105,11 +107,12 @@ public class AdminController {
 
 
     @RequestMapping("/adminBuyList")
-    public String adminSelectBuyList(Model model, SearchVO searchVO){
+    public String adminSelectBuyList(Model model, SearchVO searchVO
+                                    ,@RequestParam(name="page")String page){
         List<BuyVO> buyList = adminService.selectBuyList(searchVO);
         model.addAttribute("buyList",buyList);
-        System.out.println(searchVO);
-
+        System.out.println("@@@@@@@@@"+searchVO);
+        model.addAttribute("page",page);
         return "content/admin/admin_history";
     }
     @ResponseBody
@@ -118,6 +121,33 @@ public class AdminController {
         BuyVO detail = adminService.selectDetailBuyList(buyVO);
         System.out.println(detail);
         return detail;
+
+    }
+// 업데이트화면
+    @GetMapping("/updateItem")
+    public String updateItem(Model model
+                            ,@RequestParam(name="page")String page){
+        List<ItemVO> itemInfo = adminService.selectUpdateInfo();
+        model.addAttribute("itemInfo",itemInfo);
+
+        List<CategoryVO> cates = adminService.cateName();
+        model.addAttribute("cates",cates);
+        model.addAttribute("page",page);
+        System.out.println(itemInfo);
+        return "content/admin/update_item";
+    }
+    @ResponseBody
+    @PostMapping("/clickItemInfo")
+    public ItemVO clickItemInfo(ItemVO itemVO){
+        ItemVO clickItem = adminService.clickItemInfo(itemVO);
+
+        return clickItem;
+    }
+
+    @ResponseBody
+    @PostMapping("/updateItem")
+    public void updateItem(ItemVO itemVO){
+        adminService.updateItem(itemVO);
 
     }
 

@@ -4,14 +4,97 @@
 
 <th:block layout:fragment="content_css">
     <!-- html 파일이 열릴때 같이 실행되는 css -->
-    <!-- <link rel="stylesheet" href="/"> -->
+    <link rel="stylesheet" href="/css/content/car/car_registration.css">
 </th:block>
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
+    
     <div class="row">
         <div class="col">
-            <div class="row">
+            <form action="/car/insertCar" method="post" id="insert-btn">
+                <table class="mb-5 regist-table table justify-content-center table-borderless align-middle">
+                    <colgroup>
+                        <col width="5%">
+                        <col width="15%">
+                        <col width="5%">
+                        <col width="20%">
+                        <col width="5%">
+                        <col width="20%">
+                    </colgroup>
+                    <tr>
+                        <td colspan="6">
+                            <div class="row">
+                                <div class="col">
+                                    -차량등록
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                    제조사
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                    <select name="maker" class="form-select">
+                                        <option value="현대" selected>현대</option>
+                                        <option value="기아">기아</option>
+                                        <option value="쌍용">쌍용</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                     모델명
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                    <input class="form-control" type="text" name="modelName">
+
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                    차량가격
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col">
+                                    <input class="form-control" type="text" name="price">
+                                </div>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <div class="row">
+                                <div class="offset-10 col-2 d-grid">
+                                    <input class="btn btn-primary" type="button" value="등록" onclick="goInsert()">
+                                </div>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                </table>
+            </form>
+
+            <!-- <div class="row">
                 <div class="col">
                     <form action="/car/insertCar" method="post" id="insert-btn">
                         <div class="row justify-content-center">
@@ -43,7 +126,7 @@
                     </form>
                 </div>
 
-            </div>
+            </div> -->
 
             <div class="row">
                 <div class="col">
@@ -94,7 +177,7 @@
 
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->
-    <script src="/js/content/car_registration.js"></script>
+    <script src="/js/content/car/car_registration.js"></script>
 </th:block>
 
 </html>

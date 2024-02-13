@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="salesMapper">
+
+
+    <resultMap id="salesList" type="com.green.Car.sales.vo.SalesVO">
+        <id column="SALE_NUM" property="saleNum"/>
+        <result column="BUYER_NAME" property="buyerName"/>
+        <result column="BUYER_TEL" property="buyerTel"/>
+        <result column="SALE_DATE" property="saleDate"/>
+        <result column="COLOR" property="color"/>
+        <association property="carVO" resultMap="carMapper.carList"/>
+    </resultMap>
+
+    <insert id="insertSales">
+        INSERT INTO SALES_INFO(
+            BUYER_NAME
+            ,BUYER_TEL
+            ,COLOR
+            ,MODEL_NUM
+        )VALUES(
+            #{buyerName}
+            ,#{buyerTel}
+            ,#{color}
+            ,#{modelNum}
+        )
+    </insert>
+
+    <select id="salesList" resultMap="salesList">
+        SELECT BUYER_NAME
+            ,BUYER_TEL
+            ,LEFT(SALE_DATE,11) SALE_DATE
+            ,COLOR
+            ,MODEL_NAME
+            ,PRICE
+        FROM CAR_INFO C JOIN SALES_INFO S
+        ON C.MODEL_NUM = S.MODEL_NUM
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

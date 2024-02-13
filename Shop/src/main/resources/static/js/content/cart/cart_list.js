@@ -109,7 +109,7 @@ function chkDelete(){
     const chkArr = [];
     for(const chk of chks){
             if(chk.checked){             
-                chkArr.push(parseInt(chk.closest('td').previousElementSibling.textContent));
+                chkArr.push(parseInt(chk.value));
                 
             }
     }
@@ -125,8 +125,7 @@ function chkBuy(){
     }
     const cartCodeList = [];
     for(const chk of chks){
-        cartCodeList.push(parseInt(chk.closest('td').previousElementSibling.textContent));
+        cartCodeList.push(parseInt(chk.value));
     }
-    console.log(cartCodeList)
     location.href = `/buy/buyCarts?cartCodeList=${cartCodeList}`;
 }

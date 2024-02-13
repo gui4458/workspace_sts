@@ -1,6 +1,7 @@
 package com.green.Shop.admin.service;
 
 import com.green.Shop.buy.vo.BuyVO;
+import com.green.Shop.item.vo.CategoryVO;
 import com.green.Shop.item.vo.ImgVO;
 import com.green.Shop.item.vo.ItemVO;
 import com.green.Shop.search.vo.SearchVO;
@@ -19,4 +20,12 @@ public interface AdminService {
     List<BuyVO> selectBuyList(SearchVO searchVO);
 
     BuyVO selectDetailBuyList(BuyVO buyVO);
+
+    List<ItemVO> selectUpdateInfo();
+//    클릭한아이템정보
+    ItemVO clickItemInfo(ItemVO itemVO);
+
+    List<CategoryVO> cateName();
+
+    void updateItem(ItemVO itemVO);
 }

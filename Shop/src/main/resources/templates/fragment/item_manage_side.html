@@ -8,10 +8,10 @@
     <th:block th:fragment="itemSideFragment">
         <ul class="list-group">
             <!-- th:classappend="${adminpage == 'buyList' ? 'active' : ''}"  -->
-            <li class="list-group-item joinhover"onclick="location.href='/admin/adminBuyList';">구매이력 조회</li>
-            <li class="list-group-item active">상품 등록</li>
-            <li class="list-group-item">상품 상태 변경</li>
-            <li class="list-group-item">상품 정보 변경</li>
+            <li class="list-group-item joinhover" th:classappend="${page == 'buyList' ? 'active' : ''}" onclick="location.href='/admin/adminBuyList?page=buyList';">구매이력 조회</li>
+            <li class="list-group-item joinhover" th:classappend="${page == 'regItem' ? 'active' : ''}" onclick="location.href='/admin/regItemForm?page=regItem';">상품 등록</li>
+            <li class="list-group-item joinhover">상품 상태 변경</li>
+            <li class="list-group-item joinhover" th:classappend="${page == 'updateItem' ? 'active' : ''}" onclick="location.href='/admin/updateItem?page=updateItem';">상품 정보 변경</li>
             <li class="list-group-item">상품 검색</li>
           </ul>
     </th:block>

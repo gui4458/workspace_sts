@@ -67,18 +67,19 @@
     </delete>
 
     <insert id="insertBuyDetail">
-        INSERT INTO BUY_DETAIL (
+        INSERT INTO BUY_DETAIL(
             ITEM_CODE
             ,BUY_CNT
             ,TOTAL_PRICE
             ,BUY_CODE
-        ) VALUES (
+        ) VALUES(
             #{itemCode}
             ,#{buyCnt}
             ,#{totalPrice}
             ,#{buyCode}
         )
     </insert>
+
 <!-- 구매 목록 조회(사용자용)-->
     <select id="selectBuyList" resultMap="shopBuy">
         SELECT D.BUY_CODE

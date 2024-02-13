@@ -4,10 +4,28 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="adminMapper">
 
+    <resultMap id="selectUpdate" type="com.green.Shop.item.vo.ItemVO">
+        <id column="ITEM_CODE" property="itemCode"/>
+        <result column="ITEM_NAME" property="itemName"/>
+        <result column="ITEM_STOCK" property="itemStock"/>
+        <result column="ITEM_STATUS" property="itemStatus"/>
+        <association property="categoryVO" resultMap="itemMapper.category"/>
+        <collection property="imgList" resultMap="image"/>
+    </resultMap>
+
+    <resultMap id="image" type="com.green.Shop.item.vo.ImgVO">
+        <id column="IMG_CODE" property="imgCode"/>
+        <result column="IS_NAME" property="isName"/>
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+    </resultMap>
+
     <select id="selectNextItemCode" resultType="int">
         SELECT IFNULL(MAX(ITEM_CODE), 0) + 1
         FROM SHOP_ITEM;
     </select>
+
+
 
     <insert id="insertItem">
         INSERT INTO SHOP_ITEM(
@@ -39,20 +57,26 @@
             ,#{img.itemCode})
         </foreach>
     </insert>
-
+<!-- 구매 목록 조회(관리자용)-->
+<!--    작다 < : &lt; less than-->
+<!--    크다 > : &gt; great than-->
     <select id="selectBuyList" resultMap="buyMapper.shopBuy">
         SELECT BUY_CODE
             ,MEMBER_ID
             ,BUY_PRICE
             ,LEFT(BUY_DATE,11) BUY_DATE
         FROM SHOP_BUY
+        WHERE 1 = 1
         <if test='searchText != null and !searchText.equals("")'>
-            WHERE ${searchOption} LIKE CONCAT('%',#{searchText},'%')
-            AND DATE_FORMAT(BUY_DATE, '%Y-%m-%d') > #{from}
-            AND #{to} > DATE_FORMAT(BUY_DATE, '%Y-%m-%d')
-
+            AND ${searchOption} LIKE CONCAT('%',#{searchText},'%')
         </if>
-        ORDER BY BUY_DATE DESC
+        <if test='from != null and !from.equals("")'>
+            AND DATE_FORMAT(BUY_DATE, '%Y-%m-%d') &gt;= #{from}
+        </if>
+        <if test='to != null and !to.equals("")'>
+            AND #{to} &gt;= DATE_FORMAT(BUY_DATE, '%Y-%m-%d')
+        </if>
+        ORDER BY BUY_CODE DESC
     </select>
 
     <select id="selectDetailBuyList" resultMap="buyMapper.shopBuy">
@@ -73,8 +97,49 @@
         ON B.BUY_CODE = D.BUY_CODE
         WHERE IS_NAME = 'Y'
         AND D.BUY_CODE = #{buyCode}
-        ORDER BY BUY_CODE ASC;
+        ORDER BY BUY_CODE ASC
     </select>
+    <!-- 관리자 페이지 상태변경 품목 리스트-->
+    <select id="selectUpdateInfo" resultMap="selectUpdate">
+        SELECT ITEM.ITEM_CODE
+            ,ITEM_NAME
+            ,ITEM_STOCK
+            ,ITEM_STATUS
+            ,ATTACHED_FILE_NAME
+        FROM SHOP_ITEM ITEM JOIN ITEM_IMAGE IMAGE
+    </select>
+<!-- 관리자 페이지 상태변경 품목 리스트 클릭시-->
+    <select id="clickItemInfo" resultMap="selectUpdate">
+        SELECT CATE_NAME
+            ,ITEM_STOCK
+            ,ITEM_NAME
+            ,ORIGIN_FILE_NAME
+            ,I.ITEM_CODE
+            ,IS_NAME
+            ,ITEM_STATUS
+            ,ATTACHED_FILE_NAME
+        FROM item_category C JOIN shop_item I
+        ON C.CATE_CODE=I.CATE_CODE
+        JOIN item_image IMA
+        ON I.ITEM_CODE=IMA.ITEM_CODE
+        WHERE I.ITEM_CODE = #{itemCode}
+    </select>
+
+    <select id="cateName" resultMap="itemMapper.category">
+        SELECT CATE_NAME
+            ,CATE_CODE
+        FROM ITEM_CATEGORY
+    </select>
+
+<!--    정보변경 업데이트 -->
+    <update id="updateItem">
+        UPDATE SHOP_ITEM
+        SET CATE_CODE = #{cateCode}
+            ,ITEM_STOCK = #{itemStock}
+            ,ITEM_NAME = #{itemName}
+            ,ITEM_STATUS = #{itemStatus}
+        WHERE ITEM_CODE = #{itemCode}
+    </update>
 </mapper>
 
 

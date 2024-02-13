@@ -1,5 +1,6 @@
 package com.green.Car.sales.vo;
 
+import com.green.Car.car.vo.CarVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,4 +15,5 @@ public class SalesVO {
     private String color;
     private String saleDate;
     private int modelNum;
+    private CarVO carVO;
 }

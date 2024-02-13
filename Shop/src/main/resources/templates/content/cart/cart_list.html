@@ -56,7 +56,7 @@
                             <tr>
                                 <td>[[${#lists.size(items) - state.index}]]</td>
                                 <td>
-                                    <input type="checkbox" class="form-check-input chk" onclick="setFinalPrice()" checked>
+                                    <input type="checkbox" th:value="${item.cartCode}" class="form-check-input chk" onclick="setFinalPrice()" checked>
                                 </td>
                                 <td>
                                     <div class="row align-items-center">

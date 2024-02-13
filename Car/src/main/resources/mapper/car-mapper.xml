@@ -11,6 +11,7 @@
     </resultMap>
 
 
+
     <insert id="insertCar">
         INSERT INTO CAR_INFO(
             MODEL_NAME
@@ -32,21 +33,9 @@
         FROM CAR_INFO
     </select>
 
-    <insert id="insertSales">
-        INSERT INTO SALES_INFO(
-            BUYER_NAME
-            ,BUYER_TEL
-            ,COLOR
-            ,SALE_DATE
-            ,MODEL_NUM
-        )VALUES(
-            #{buyerName}
-            ,#{buyerTel}
-            ,#{color}
-            ,#{saleDate}
-            ,#{modelNum}
-        )
-    </insert>
+
+
+
 </mapper>
 
 

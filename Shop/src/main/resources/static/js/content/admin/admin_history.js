@@ -3,7 +3,7 @@
 function goSearch(){
     const select = document.querySelector('#select-buyer-menu').value;
     const text = document.querySelector('.search-text').value;
-    console.log(text);
+   
 
 
     fetch('/', { //요청경로

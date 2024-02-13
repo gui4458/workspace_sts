@@ -7,6 +7,7 @@
     <resultMap id="category" type="com.green.Shop.item.vo.CategoryVO">
         <id column="CATE_CODE" property="cateCode"/>
         <result column="CATE_NAME" property="cateName"/>
+
     </resultMap>
 <!--리스트-->
     <resultMap id="item" type="com.green.Shop.item.vo.ItemVO">
@@ -18,7 +19,6 @@
         <result column="REG_DATE" property="regDate"/>
         <result column="CATE_CODE" property="cateCode"/>
         <collection property="imgList" resultMap="img"/>
-
     </resultMap>
 <!--    디테일-->
     <resultMap id="itemDetail" type="com.green.Shop.item.vo.ItemVO">

@@ -12,20 +12,21 @@
     <!-- html 코드 작성 -->
     <div class="row justify-content-center">
         <div class="col">
-            <form action="/car/insertSales" method="post">
+            <form action="/sales/insertSales" method="post">
                 <table class="table table-borderless align-middle">
+                   
                     <tr>
                         <td>
                             <div class="row">
-                                <div class="col">
+                                <div class="col text-end">
                                     구매자명
                                 </div>
                             </div>
                         </td>
                         <td colspan="3">
                             <div class="row">
-                                <div class="col">
-                                    <input type="text" name="buyerName">
+                                <div class="col-5">
+                                    <input class="form-control" type="text" name="buyerName">
                                 </div>
                             </div>
                         </td>
@@ -33,15 +34,15 @@
                     <tr>
                         <td>
                             <div class="row">
-                                <div class="col">
+                                <div class="col text-end">
                                     색상
                                 </div>
                             </div>
                         </td>
                         <td>
                             <div class="row">
-                                <div class="col">
-                                    <select name="color">
+                                <div class="col-5">
+                                    <select class="form-select" name="color">
                                         <option value="블랙" selected>블랙</option>
                                         <option value="화이트">화이트</option>
                                         <option value="실버">실버</option>
@@ -52,19 +53,19 @@
                         </td>
                         <td>
                             <div class="row">
-                                <div class="col">
+                                <div class="col text-end">
                                     모델
                                 </div>
                             </div>
                         </td>
                         <td>
                             <div class="row">
-                                <div class="col">
-                                    <select name="modelNum" id="">
+                                <div class="col-5">
+                                    <select class="form-select" name="modelNum" id="">
                                         <th:block th:each="carInfo : ${carInfoList}">
                                             <option th:value="${carInfo.modelNum}">
                                                 
-                                                [[${carInfo.maker}]]
+                                                [[${carInfo.modelName}]]
                                             </option>
                                         </th:block>
                                         
@@ -76,24 +77,24 @@
                     <tr>
                         <td>
                             <div class="row">
-                                <div class="col">
+                                <div class="col text-end">
                                     연락처
                                 </div>
                             </div>
                         </td>
                         <td colspan="3">
                             <div class="row">
-                                <div class="col">
-                                    <input type="text" name="buyerTel">
+                                <div class="col-5">
+                                    <input class="form-control" type="text" name="buyerTel">
                                 </div>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan="4">
                             <div class="row">
-                                <div class="col">
-                                    <input type="submit" value="등록">
+                                <div class="col offset-6 mt-3">
+                                    <input class="btn btn-primary text-center" type="submit" value="등록">
                                 </div>
                             </div>
                         </td>

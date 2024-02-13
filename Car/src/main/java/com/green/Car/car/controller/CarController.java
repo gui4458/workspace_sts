@@ -2,6 +2,8 @@ package com.green.Car.car.controller;
 
 import com.green.Car.car.service.CarServiceImpl;
 import com.green.Car.car.vo.CarVO;
+import com.green.Car.sales.service.SalesServiceImpl;
+import com.green.Car.sales.vo.SalesVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +18,8 @@ import java.util.List;
 public class CarController {
     @Resource(name="carService")
     private CarServiceImpl carService;
-
+    @Resource(name="salesService")
+    private SalesServiceImpl salesService;
     @GetMapping("/")
     public String carMain(){
 
@@ -42,18 +45,7 @@ public class CarController {
         model.addAttribute("carInfoList",carInfoList);
         return "content/sales/sales_info";
     }
-// 판매목록
-    @GetMapping("/salesList")
-    public String salesList(){
 
-        return "content/sales/sales_list";
-    }
-//    판매 정보 등록
-    @PostMapping("/insertSales")
-    public String insertSales(CarVO carVO){
-        carService.insertSales(carVO);
-        return "content/sales/sales_list";
-    }
 
 
 

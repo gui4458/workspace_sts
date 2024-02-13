@@ -1,5 +1,6 @@
 package com.green.Car.car.vo;
 
+import com.green.Car.sales.vo.SalesVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

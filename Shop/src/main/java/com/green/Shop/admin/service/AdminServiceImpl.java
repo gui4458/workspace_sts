@@ -1,6 +1,7 @@
 package com.green.Shop.admin.service;
 
 import com.green.Shop.buy.vo.BuyVO;
+import com.green.Shop.item.vo.CategoryVO;
 import com.green.Shop.item.vo.ItemVO;
 import com.green.Shop.search.vo.SearchVO;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -38,5 +39,24 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public BuyVO selectDetailBuyList(BuyVO buyVO) {
         return sqlSession.selectOne("adminMapper.selectDetailBuyList",buyVO);
+    }
+
+    @Override
+    public List<ItemVO> selectUpdateInfo() {
+        return sqlSession.selectList("adminMapper.selectUpdateInfo");
+    }
+
+    @Override
+    public ItemVO clickItemInfo(ItemVO itemVO) {
+        return sqlSession.selectOne("adminMapper.clickItemInfo",itemVO);
+    }
+
+    @Override
+    public List<CategoryVO> cateName() {
+        return sqlSession.selectList("adminMapper.cateName");
+    }
+
+    public void updateItem(ItemVO itemVO){
+        sqlSession.update("adminMapper.updateItem",itemVO);
     }
 }

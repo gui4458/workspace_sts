@@ -1,6 +1,7 @@
 package com.green.Car.car.service;
 
 import com.green.Car.car.vo.CarVO;
+import com.green.Car.sales.vo.SalesVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,5 @@ public class CarServiceImpl implements CarService{
         return sqlSession.selectList("carMapper.selectCarList");
     }
 
-    @Override
-    public void insertSales(CarVO carVO) {
-        sqlSession.insert("carMapper.insertSales",carVO);
-    }
+
 }
