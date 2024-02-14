@@ -1,5 +1,6 @@
 package com.green.Shop.item.service;
 
+import com.green.Shop.item.vo.CategoryVO;
 import com.green.Shop.item.vo.ImgVO;
 import com.green.Shop.item.vo.ItemVO;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -14,7 +15,7 @@ public class ItemServiceImpl implements ItemService{
     private SqlSessionTemplate sqlSession;
 
     @Override
-    public List<ItemVO> selectCategory() {
+    public List<CategoryVO> selectCategory() {
          return sqlSession.selectList("itemMapper.selectCategory");
 
     }

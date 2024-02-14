@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -108,7 +106,7 @@ public class AdminController {
 
     @RequestMapping("/adminBuyList")
     public String adminSelectBuyList(Model model, SearchVO searchVO
-                                    ,@RequestParam(name="page")String page){
+                                    ,@RequestParam(name="page", required = false, defaultValue = "updateItem")String page){
         List<BuyVO> buyList = adminService.selectBuyList(searchVO);
         model.addAttribute("buyList",buyList);
         System.out.println("@@@@@@@@@"+searchVO);
@@ -126,7 +124,7 @@ public class AdminController {
 // 업데이트화면
     @GetMapping("/updateItem")
     public String updateItem(Model model
-                            ,@RequestParam(name="page")String page){
+                            ,@RequestParam(name="page", required = false, defaultValue = "updateItem")String page){
         List<ItemVO> itemInfo = adminService.selectUpdateInfo();
         model.addAttribute("itemInfo",itemInfo);
 
@@ -138,22 +136,23 @@ public class AdminController {
     }
     @ResponseBody
     @PostMapping("/clickItemInfo")
-    public ItemVO clickItemInfo(ItemVO itemVO){
+    public Map<String, Object> clickItemInfo(ItemVO itemVO){
+//        상품 상세 정보 조회
         ItemVO clickItem = adminService.clickItemInfo(itemVO);
+//      카테고리 목록 조회
+        List<CategoryVO> cateList =itemService.selectCategory();
 
-        return clickItem;
+//      위 두 데이터를 담을 수 있는 map 객체 생성
+        Map<String, Object> map = new HashMap<>();
+        map.put("clickItem",clickItem);
+        map.put("cateList",cateList);
+        return map;
     }
 
-    @ResponseBody
     @PostMapping("/updateItem")
-    public void updateItem(ItemVO itemVO){
+    public String updateItem(ItemVO itemVO){
         adminService.updateItem(itemVO);
 
+        return "redirect:/admin/updateItem";
     }
-
-
-
-
-
-
 }

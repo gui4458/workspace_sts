@@ -19,6 +19,7 @@ public class ItemVO{
     private int cateCode;
     private CategoryVO categoryVO;
     private int itemStatus;
+    private String strStatus;
     private List<ImgVO> imgList;
 
 

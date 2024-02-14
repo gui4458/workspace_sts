@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/admin_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <link rel="stylesheet" href="/css/admin/update_item.css">
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+    <div class="row">
+        <div class="col-6">
+            <div class="row">
+                <div class="col h5">
+                    상품목록
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-end">
+                    <span class="numInfo">* 총 [[${#lists.size(itemInfo)}]]개의 상품이 등록되어 있습니다</span>
+                </div>
+            </div>
+            <table class="table align-middle text-center">
+                <colgroup>
+                    <col width="20%">
+                    <col width="20">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                </colgroup>
+                <tr>
+                    <td>NO</td>
+                    <td>상품코드</td>
+                    <td>상품명</td>
+                    <td>재고</td>
+                    <td>상태</td>
+                </tr>
+                <th:block th:each="item,state : ${itemInfo}">
+                    <tr th:onclick="upDateItem([[${item.itemCode}]],[[${item.cateCode}]],[[${cates}]])">
+                        <td>[[${#numbers.formatInteger(#lists.size(itemInfo)-state.index,2)}]]</td>
+                        <td>[[${item.itemCode}]]</td>
+                        <td>[[${item.itemName}]]</td>
+                        <td>[[${item.itemStock}]]</td>
+                        <td th:if="${item.itemStatus==1}">준비중</td>
+                        <td th:if="${item.itemStatus==2}">판매중</td>
+                        <td th:if="${item.itemStatus==3}">매진</td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+        <div class="col-6">
+            <form action="/admin/updateItem" method="post" id="updateForm">
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col h5">
+                                상품 기본 정보
+                            </div>
+                        </div>
+                        <div class="row mt-4 mb-2">
+                            <div class="col">
+                                카테고리
+                            </div>
+                            <div class="col">
+                                <select class="form-select" name="" id="selectBox">
+                                    <th:block th:each="cate : ${cates}">
+                                        <option th:value="${cate.cateCode}">[[${cate.cateName}]]</option>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <div class="col">상품수량</div>
+                            <div class="col">
+                                <input id="itemCnt" name="itemCnt" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">상품명</div>
+                            <div class="col">
+                                <input id="itemName" name="itemName" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col">상품상태</div>
+                            <div class="col">
+                                <input type="radio" name="itemStatus" class="radios" value="1">준비중
+                            </div>
+                            <div class="col">
+                                <input type="radio" name="itemStatus" value="2" class="radios">판매중
+                            </div>
+                            <div class="col">
+                                <input type="radio" name="itemStatus" value="3" class="radios">매진
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col">
+                    <div class="row mb-3">
+                        <div class="col h5">
+                            상품 이미지 정보
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">메인 이미지</div>
+                        <div class="col mainImg" onclick="goImage()"></div>
+                        <div class="col">상세 이미지</div>
+                        <div class="col subImg" onclick="goImage()"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col mt-4">
+                            <input class="btn btn-primary" type="submit" value="변경" onclick="updateItem()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <!-- 이미지 모달 -->
+    <div class="modal fade modal-lg" id="mainImg-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">이미지</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body img-modal">
+
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/js/content/admin/update_item.js"></script>
+</th:block>
+
+</html>

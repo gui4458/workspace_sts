@@ -18,6 +18,9 @@
         <result column="ITEM_INTRO" property="itemIntro"/>
         <result column="REG_DATE" property="regDate"/>
         <result column="CATE_CODE" property="cateCode"/>
+        <result column="STR_STATUS" property="strStatus"/>
+        <result column="ITEM_STATUS" property="itemStatus"/>
+        <association property="categoryVO" resultMap="category"/>
         <collection property="imgList" resultMap="img"/>
     </resultMap>
 <!--    디테일-->

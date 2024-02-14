@@ -99,30 +99,43 @@
         AND D.BUY_CODE = #{buyCode}
         ORDER BY BUY_CODE ASC
     </select>
-    <!-- 관리자 페이지 상태변경 품목 리스트-->
-    <select id="selectUpdateInfo" resultMap="selectUpdate">
+    <!-- 관리자 페이지 정보변경 품목 리스트-->
+    <select id="selectUpdateInfo" resultMap="itemMapper.item">
         SELECT ITEM.ITEM_CODE
             ,ITEM_NAME
             ,ITEM_STOCK
             ,ITEM_STATUS
             ,ATTACHED_FILE_NAME
+            ,CASE
+                WHEN ITEM_STATUS = 1 THEN '준비중'
+                WHEN ITEM_STATUS = 2 THEN '판매중'
+                ELSE '매진'
+            END STR_STATUS
         FROM SHOP_ITEM ITEM JOIN ITEM_IMAGE IMAGE
     </select>
 <!-- 관리자 페이지 상태변경 품목 리스트 클릭시-->
-    <select id="clickItemInfo" resultMap="selectUpdate">
+    <select id="clickItemInfo" resultMap="itemMapper.item">
         SELECT CATE_NAME
-            ,ITEM_STOCK
+            ,CATE.CATE_CODE
             ,ITEM_NAME
-            ,ORIGIN_FILE_NAME
-            ,I.ITEM_CODE
-            ,IS_NAME
+            ,ITEM_STOCK
             ,ITEM_STATUS
+            ,CASE
+                WHEN ITEM_STATUS = 1 THEN '준비중'
+                WHEN ITEM_STATUS = 2 THEN '판매중'
+                ELSE '매진'
+            END STR_STATUS
+            ,ITEM.ITEM_CODE
+            ,ORIGIN_FILE_NAME
             ,ATTACHED_FILE_NAME
-        FROM item_category C JOIN shop_item I
-        ON C.CATE_CODE=I.CATE_CODE
-        JOIN item_image IMA
-        ON I.ITEM_CODE=IMA.ITEM_CODE
-        WHERE I.ITEM_CODE = #{itemCode}
+            ,IMG_CODE
+            ,IS_NAME
+        FROM SHOP_ITEM AS ITEM
+        JOIN item_category AS CATE
+        ON ITEM.CATE_CODE = CATE.CATE_CODE
+        JOIN item_image AS IMG
+        ON ITEM.ITEM_CODE = IMG.ITEM_CODE
+        WHERE ITEM.ITEM_CODE = #{itemCode};
     </select>
 
     <select id="cateName" resultMap="itemMapper.category">

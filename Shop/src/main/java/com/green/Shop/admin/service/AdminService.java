@@ -20,7 +20,7 @@ public interface AdminService {
     List<BuyVO> selectBuyList(SearchVO searchVO);
 
     BuyVO selectDetailBuyList(BuyVO buyVO);
-
+// 상품 정보 변경 화면에서 상품 목록 조회
     List<ItemVO> selectUpdateInfo();
 //    클릭한아이템정보
     ItemVO clickItemInfo(ItemVO itemVO);
