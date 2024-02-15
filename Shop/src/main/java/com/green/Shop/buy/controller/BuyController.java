@@ -31,9 +31,7 @@ public class BuyController {
     public String buyCarts(CartVO cartVO, HttpSession session){
 //        구매 상세 테이블에 insert할 ITEM_CODE, BUY_CNT, TOTAL_PRICE 조회
         List<CartViewVO> cartViewList = cartService.selectCartListForBuy(cartVO);
-        for (CartViewVO e : cartViewList){
-            System.out.println(e);
-        }
+
 //        구매 정보 테이블에 들어갈 BUY_PRICE(구매 총 가격)
         int buyPrice = 0;
         for (CartViewVO e :cartViewList){
@@ -61,7 +59,7 @@ public class BuyController {
         }
 
         buyVO.setBuyDetailList(buyDetailList);
-
+        System.out.println(cartVO.getItemCode());
         buyService.insertBuys(buyVO);
 
 
@@ -80,6 +78,7 @@ public class BuyController {
         buyVO.setBuyPrice(buyDetailVO.getTotalPrice());
         buyDetailVO.setBuyCode(buyCode);
         buyService.insertBuy(buyVO,buyDetailVO);
+
 
         return "redirect:/";
     }

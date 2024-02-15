@@ -2,6 +2,7 @@ package com.green.Shop.buy.service;
 
 import com.green.Shop.buy.vo.BuyDetailVO;
 import com.green.Shop.buy.vo.BuyVO;
+import com.green.Shop.cart.vo.CartViewVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class BuyServiceImpl implements BuyService {
         sqlSession.insert("buyMapper.insertBuy",buyVO);
         sqlSession.insert("buyMapper.insertBuyDetails",buyVO);
         sqlSession.delete("buyMapper.deleteCart",buyVO);
+
 //        sqlSession.delete("cartMapper.deleteCarts",cartVO);
     }
     @Transactional(rollbackFor = Exception.class)
@@ -32,6 +34,7 @@ public class BuyServiceImpl implements BuyService {
     public void insertBuy(BuyVO buyVO, BuyDetailVO buyDetailVO) {
         sqlSession.insert("buyMapper.insertBuy",buyVO);
         sqlSession.insert("buyMapper.insertBuyDetail",buyDetailVO);
+//        sqlSession.update("buyMapper.minusStatus",buyDetailVO);
     }
 
     @Override

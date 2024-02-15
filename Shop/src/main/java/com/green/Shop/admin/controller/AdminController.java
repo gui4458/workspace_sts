@@ -124,14 +124,15 @@ public class AdminController {
 // 업데이트화면
     @GetMapping("/updateItem")
     public String updateItem(Model model
-                            ,@RequestParam(name="page", required = false, defaultValue = "updateItem")String page){
+                            ,@RequestParam(name="page", required = false, defaultValue = "updateItem")String page
+                            ,@RequestParam(name="itemCode", required = false, defaultValue = "0")int itemCode){
         List<ItemVO> itemInfo = adminService.selectUpdateInfo();
         model.addAttribute("itemInfo",itemInfo);
 
         List<CategoryVO> cates = adminService.cateName();
         model.addAttribute("cates",cates);
         model.addAttribute("page",page);
-        System.out.println(itemInfo);
+        model.addAttribute("updateItemCode",itemCode);
         return "content/admin/update_item";
     }
     @ResponseBody
@@ -153,6 +154,6 @@ public class AdminController {
     public String updateItem(ItemVO itemVO){
         adminService.updateItem(itemVO);
 
-        return "redirect:/admin/updateItem";
+        return "redirect:/admin/updateItem?itemCode="+itemVO.getItemCode();
     }
 }

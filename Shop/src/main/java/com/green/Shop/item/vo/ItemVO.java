@@ -1,5 +1,6 @@
 package com.green.Shop.item.vo;
 
+import com.green.Shop.buy.vo.BuyDetailVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

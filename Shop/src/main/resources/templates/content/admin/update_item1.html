@@ -42,9 +42,9 @@
                         <td>[[${item.itemCode}]]</td>
                         <td>[[${item.itemName}]]</td>
                         <td>[[${item.itemStock}]]</td>
-                        <td th:if="${item.itemStatus==1}">준비중</td>
-                        <td th:if="${item.itemStatus==2}">판매중</td>
-                        <td th:if="${item.itemStatus==3}">매진</td>
+                        <td th:if="${item.itemStatus==1}" disabled>준비중</td>
+                        <td th:if="${item.itemStatus==2}" disabled>판매중</td>
+                        <td th:if="${item.itemStatus==3}" disabled>매진</td>
                     </tr>
                 </th:block>
             </table>

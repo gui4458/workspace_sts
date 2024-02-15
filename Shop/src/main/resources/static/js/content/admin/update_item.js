@@ -1,3 +1,7 @@
+const updateItemCode = document.querySelector('#updateItemCode').value;
+if(updateItemCode != 0){
+    getDetail(updateItemCode);
+}
 
 function upDateItem(itemCode,cateCode,cates){
     const selectBoxTag = document.querySelector('#selectBox')
@@ -183,43 +187,43 @@ function getDetail(itemCode,cates){
                         switch (data.clickItem.itemStatus) {
                             case 1:
                             str+=    `<div class="form-check form-check-inline">
-                            <input class="form-check-input radios" type="radio" name="itemStatus"  checked value="${data.clickItem.itemStatus}">
+                            <input class="form-check-input radios" type="radio" name="itemStatus"  checked value="1">
                             <label class="form-check-label">준비중</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input radios" type="radio" name="itemStatus" value="">
+                                <input class="form-check-input radios" type="radio" name="itemStatus"  value="2">
                                 <label class="form-check-label">판매중</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input radios" type="radio" name="itemStatus" value="">
+                                <input class="form-check-input radios" type="radio" name="itemStatus"  value="3">
                                 <label class="form-check-label">매진</label>
                             </div>`
                                 break;
                             case 2:
                                 str+= `<div class="form-check form-check-inline">
-                                <input class="form-check-input radios" type="radio" name="itemStatus"  value="">
+                                <input class="form-check-input radios" type="radio" name="itemStatus"  value="1">
                                 <label class="form-check-label">준비중</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input radios" type="radio" checked name="itemStatus" value="${data.clickItem.itemStatus}">
+                                    <input class="form-check-input radios" type="radio" checked name="itemStatus"  value="2">
                                     <label class="form-check-label">판매중</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input radios" type="radio" name="itemStatus" value="">
+                                    <input class="form-check-input radios" type="radio" name="itemStatus"  value="3">
                                     <label class="form-check-label">매진</label>
                                 </div>`
                                 break;
                             default:
                                 str+= `<div class="form-check form-check-inline">
-                            <input class="form-check-input radios" type="radio" name="itemStatus"  value="">
+                            <input class="form-check-input radios" type="radio" name="itemStatus"  value="1">
                             <label class="form-check-label">준비중</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input radios" type="radio" name="itemStatus" value="">
+                                <input class="form-check-input radios" type="radio" name="itemStatus"  value="2">
                                 <label class="form-check-label">판매중</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input radios" type="radio" checked name="itemStatus" value="${data.clickItem.itemStatus}">
+                                <input class="form-check-input radios" type="radio" checked name="itemStatus"  value="3">
                                 <label class="form-check-label">매진</label>
                             </div>`
                           
@@ -300,12 +304,15 @@ function getDetail(itemCode,cates){
                 e.checked=true;
             }
         });
+        
     })
     //fetch 통신 실패 시 실행 영역
     .catch(err=>{
         alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
         console.log(err);
     });
+
+    
 }
 
 
