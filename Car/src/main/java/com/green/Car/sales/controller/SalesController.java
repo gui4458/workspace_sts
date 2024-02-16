@@ -18,12 +18,6 @@ public class SalesController {
     @Resource(name="salesService")
     private SalesServiceImpl salesService;
 
-    //    판매 정보 등록
-    @PostMapping("/insertSales")
-    public String insertSales(SalesVO salesVO){
-        salesService.insertSales(salesVO);
-        return "content/sales/sales_list";
-    }
 
     // 판매목록
     @GetMapping("/salesList")
@@ -32,6 +26,12 @@ public class SalesController {
         model.addAttribute("salesList",salesList);
         System.out.println(salesList);
         return "content/sales/sales_list";
+    }
+    //    판매 정보 등록
+    @PostMapping("/insertSales")
+    public String insertSales(SalesVO salesVO){
+        salesService.insertSales(salesVO);
+        return "redirect:/sales/salesList";
     }
 
 

@@ -16,4 +16,6 @@ public interface BuyService {
     void insertBuy(BuyVO buyVO, BuyDetailVO buyDetailVO);
 
     List<BuyVO> selectBuyList(String memberId);
+
+
 }

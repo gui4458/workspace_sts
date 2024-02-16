@@ -37,6 +37,7 @@
             ,PRICE
         FROM CAR_INFO C JOIN SALES_INFO S
         ON C.MODEL_NUM = S.MODEL_NUM
+        ORDER BY SALE_DATE DESC
     </select>
 </mapper>
 

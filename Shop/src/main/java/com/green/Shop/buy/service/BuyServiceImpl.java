@@ -26,19 +26,21 @@ public class BuyServiceImpl implements BuyService {
         sqlSession.insert("buyMapper.insertBuy",buyVO);
         sqlSession.insert("buyMapper.insertBuyDetails",buyVO);
         sqlSession.delete("buyMapper.deleteCart",buyVO);
-
-//        sqlSession.delete("cartMapper.deleteCarts",cartVO);
     }
+
+
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void insertBuy(BuyVO buyVO, BuyDetailVO buyDetailVO) {
         sqlSession.insert("buyMapper.insertBuy",buyVO);
         sqlSession.insert("buyMapper.insertBuyDetail",buyDetailVO);
-//        sqlSession.update("buyMapper.minusStatus",buyDetailVO);
+        sqlSession.update("buyMapper.minusCnt",buyDetailVO);
     }
 
     @Override
     public List<BuyVO> selectBuyList(String memberId) {
        return sqlSession.selectList("buyMapper.selectBuyList",memberId);
     }
+
+
 }

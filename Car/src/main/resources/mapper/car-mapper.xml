@@ -8,6 +8,7 @@
         <result column="MODEL_NAME" property="modelName"/>
         <result column="PRICE" property="price"/>
         <result column="MAKER" property="maker"/>
+
     </resultMap>
 
 

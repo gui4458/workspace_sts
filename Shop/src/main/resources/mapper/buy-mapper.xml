@@ -108,6 +108,12 @@
         ORDER BY BUY_CODE ASC;
     </select>
 
+
+    <update id="minusCnt">
+        UPDATE SHOP_ITEM
+        SET ITEM_STOCK = ITEM_STOCK - #{buyCnt}
+        WHERE ITEM_CODE = #{itemCode}
+    </update>
 </mapper>
 
 
