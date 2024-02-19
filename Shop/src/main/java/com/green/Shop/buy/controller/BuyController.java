@@ -59,9 +59,9 @@ public class BuyController {
         }
 
         buyVO.setBuyDetailList(buyDetailList);
-        System.out.println(buyVO);
+
         buyService.insertBuys(buyVO);
-        System.out.println(buyDetailList);
+
 
 
 
@@ -80,8 +80,7 @@ public class BuyController {
         buyVO.setBuyPrice(buyDetailVO.getTotalPrice());
         buyDetailVO.setBuyCode(buyCode);
         buyService.insertBuy(buyVO,buyDetailVO);
-        System.out.println(buyVO);
-        System.out.println(buyDetailVO);
+
 
         return "redirect:/";
     }

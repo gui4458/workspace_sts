@@ -5,7 +5,7 @@
 
 <th:block layout:fragment="content_css">
     <!-- html 파일이 열릴때 같이 실행되는 css -->
-    <link rel="stylesheet" href="/css/content/sales_list.css">
+    <!-- <link rel="stylesheet" href="/"> -->
 </th:block>
 
 <th:block layout:fragment="contentFragment">
@@ -82,9 +82,13 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="row">
+                                <div class="row" th:if="${sales.buyerTel} == '' ">
+                                    <div class="col">연락처 정보가 없습니다.</div>
+                                </div>
+                                <div class="row" th:if="${sales.buyerTel} != '' ">
                                     <div class="col">[[${sales.buyerTel}]]</div>
                                 </div>
+                                
                             </td>
                             <td>
                                 <div class="row">
@@ -117,6 +121,6 @@
 
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->
-    <script src="/"></script>
+    <!-- <script src="/"></script> -->
 </th:block>
 </html>

@@ -146,7 +146,7 @@ function fetch4(){
     };
     
     
-       
+    
     
     
         fetch('/fetch/fetch4', { //요청경로

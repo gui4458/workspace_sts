@@ -36,7 +36,7 @@ public class CartController {
         MemberVO loginInfo =(MemberVO)session.getAttribute("loginInfo");
         List<CartViewVO> items = cartService.selectCart(loginInfo.getMemberId());
         model.addAttribute("items",items);
-        System.out.println(items);
+
 //        총 가격을 계산한 후 html 전달
         int sum = 0;
         for (CartViewVO e : items){

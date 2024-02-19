@@ -109,7 +109,7 @@ public class AdminController {
                                     ,@RequestParam(name="page", required = false, defaultValue = "updateItem")String page){
         List<BuyVO> buyList = adminService.selectBuyList(searchVO);
         model.addAttribute("buyList",buyList);
-        System.out.println("@@@@@@@@@"+searchVO);
+
         model.addAttribute("page",page);
         return "content/admin/admin_history";
     }
@@ -117,7 +117,7 @@ public class AdminController {
     @PostMapping("/adminBuyDetail")
     public BuyVO adminBuyDetail(BuyVO buyVO){
         BuyVO detail = adminService.selectDetailBuyList(buyVO);
-        System.out.println(detail);
+
         return detail;
 
     }

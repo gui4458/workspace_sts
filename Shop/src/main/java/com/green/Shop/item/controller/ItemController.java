@@ -23,9 +23,7 @@ public class ItemController {
         List<ItemVO> itemList = itemService.selectItemList();
         model.addAttribute("itemList",itemList);
 
-        for (ItemVO vo : itemList){
-            System.out.println(vo);
-        }
+
 
         return "content/item/item_list";
     }

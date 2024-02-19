@@ -4,7 +4,7 @@
 
 <th:block layout:fragment="content_css">
     <!-- html 파일이 열릴때 같이 실행되는 css -->
-    <link rel="stylesheet" href="/css/content/car/car_registration.css">
+    <!-- <link rel="stylesheet" href="/css/content/car/car_registration.css"> -->
 </th:block>
 
 <th:block layout:fragment="contentFragment">
@@ -53,14 +53,14 @@
                         <td>
                             <div class="row">
                                 <div class="col">
-                                     모델명
+                                    모델명
                                 </div>
                             </div>
                         </td>
                         <td>
                             <div class="row">
                                 <div class="col">
-                                    <input class="form-control" type="text" name="modelName">
+                                    <input class="form-control" id="modelName" type="text" name="modelName">
 
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                         <td>
                             <div class="row">
                                 <div class="col">
-                                    <input class="form-control" type="text" name="price">
+                                    <input class="form-control" id="price" type="text" name="price">
                                 </div>
                             </div>
                         </td>
@@ -93,40 +93,6 @@
                     </tr>
                 </table>
             </form>
-
-            <!-- <div class="row">
-                <div class="col">
-                    <form action="/car/insertCar" method="post" id="insert-btn">
-                        <div class="row justify-content-center">
-                            <div class="offset-1 col mb-3">-차량등록</div>
-                        </div>
-                        <div class="row">
-                            <div class="offset-1 col-1">제조사</div>
-                            <div class="col-1">
-                                <select name="maker">
-                                    <option value="현대" selected>현대</option>
-                                    <option value="기아">기아</option>
-                                    <option value="쌍용">쌍용</option>
-                                </select>
-                            </div>
-                            <div class="col-1">모델명</div>
-                            <div class="col-1">
-                                <input type="text" name="modelName">
-                            </div>
-                            <div class="col-1">차량가격</div>
-                            <div class="col-2">
-                                <input type="text" name="price">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col text-end ">
-                                <input type="button" value="등록" onclick="goInsert()">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div> -->
 
             <div class="row">
                 <div class="col">
@@ -148,9 +114,6 @@
                                         <td>제조사</td>
                                     </tr>
                                 </thead>
-                                    <!-- <th:block th:if="${variable}">
-
-                                    </th:block> -->
                                     <th:block th:each="carInfo : ${carInfoList}">
                                         <tbody>
                                             <tr>

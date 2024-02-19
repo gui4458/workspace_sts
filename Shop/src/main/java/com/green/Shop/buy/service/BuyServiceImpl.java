@@ -26,6 +26,7 @@ public class BuyServiceImpl implements BuyService {
         sqlSession.insert("buyMapper.insertBuy",buyVO);
         sqlSession.insert("buyMapper.insertBuyDetails",buyVO);
         sqlSession.delete("buyMapper.deleteCart",buyVO);
+        sqlSession.update("buyMapper.minusCnts",buyVO);
     }
 
 

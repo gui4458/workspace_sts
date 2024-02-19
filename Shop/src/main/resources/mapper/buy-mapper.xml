@@ -61,11 +61,6 @@
         </foreach>
     </insert>
 
-    <update id="minusStatus">
-        UPDATE SHOP_ITEM
-        SET ITEM_STATUS = (SELECT BUY_CNT FROM BUY_DETAIL WHERE ITEM_CODE = #{itemCode})
-        WHERE ITEM_CODE = #{itemCode}
-    </update>
 
 
     <delete id="deleteCart">
@@ -108,12 +103,21 @@
         ORDER BY BUY_CODE ASC;
     </select>
 
-
+<!-- 개별 구매 시 재고 마이너스-->
     <update id="minusCnt">
         UPDATE SHOP_ITEM
         SET ITEM_STOCK = ITEM_STOCK - #{buyCnt}
         WHERE ITEM_CODE = #{itemCode}
     </update>
+<!-- 장바구니 구매 시 재고 마이너스-->
+    <update id="minusCnts">
+        <foreach collection="buyDetailList" item="buy" separator=",">
+            UPDATE SHOP_ITEM
+            SET ITEM_STOCK = ITEM_STOCK - #{buy.buyCnt}
+            WHERE ITEM_CODE = #{buy.itemCode}
+        </foreach>
+    </update>
+
 </mapper>
 
 
