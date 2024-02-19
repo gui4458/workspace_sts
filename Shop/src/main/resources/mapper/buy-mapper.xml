@@ -41,6 +41,12 @@
         )
     </insert>
 
+    <select id="CntCheck" resultType="int">
+        SELECT ITEM_STOCK
+        FROM SHOP_ITEM
+        WHERE ITEM_CODE = #{itemCode}
+    </select>
+
 <!--    구매 상세 정보 insert-->
 
     <insert id="insertBuyDetails">
@@ -110,13 +116,13 @@
         WHERE ITEM_CODE = #{itemCode}
     </update>
 <!-- 장바구니 구매 시 재고 마이너스-->
-    <update id="minusCnts">
-        <foreach collection="buyDetailList" item="buy" separator=",">
-            UPDATE SHOP_ITEM
-            SET ITEM_STOCK = ITEM_STOCK - #{buy.buyCnt}
-            WHERE ITEM_CODE = #{buy.itemCode}
-        </foreach>
-    </update>
+<!--    <update id="minusCnts">-->
+<!--        <foreach collection="buyDetailList" item="buy">-->
+<!--            UPDATE SHOP_ITEM-->
+<!--            SET ITEM_STOCK = ITEM_STOCK - #{buy.buyCnt}-->
+<!--            WHERE ITEM_CODE = #{buy.itemCode}-->
+<!--        </foreach>-->
+<!--    </update>-->
 
 </mapper>
 
