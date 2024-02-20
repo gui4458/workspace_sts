@@ -15,6 +15,7 @@ public class CartViewVO {
 	private String cartDate;
 	private String itemName;
 	private String itemPrice;
+	private int itemStock;
 	private String itemIntro;
     private int totalPrice;
     private String memberName;

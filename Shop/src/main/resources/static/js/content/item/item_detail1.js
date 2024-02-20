@@ -69,16 +69,21 @@ function insertCart(loginInfo, itemCode) {
 
 }
 
-function oneBuy(loginInfo){
+function oneBuy(loginInfo,itemStock){
 
     if (loginInfo == null) {
         alert('로그인 해주세요.');
     } else if (loginInfo != null) {
         // 총 가격 정보를 input value로 세팅
+        const cnt = document.querySelector('.cnt').value;
+        
         const totalPriceStr = document.querySelector('.total-span').textContent;
         const regex = /[^0-9]/g;
         const totalPrice = totalPriceStr.replace(regex,'');
-
+        if(itemStock-cnt < 0){
+            alert(`재고가 부족합니다.\n현재 재고 : ${itemStock}`)
+            return;
+        }
         document.querySelector('input[name="totalPrice"]').value = totalPrice;
         // submit
         document.querySelector('#insert-buy-form').submit();

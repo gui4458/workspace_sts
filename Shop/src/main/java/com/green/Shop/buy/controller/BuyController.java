@@ -82,6 +82,7 @@ public class BuyController {
         buyService.insertBuy(buyVO,buyDetailVO);
 
 
+
         return "redirect:/";
     }
 

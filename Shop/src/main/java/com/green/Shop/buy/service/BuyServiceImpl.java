@@ -27,18 +27,17 @@ public class BuyServiceImpl implements BuyService {
 
 
         for(BuyDetailVO e : buyVO.getBuyDetailList()){
+            int a = sqlSession.selectOne("buyMapper.CntCheck",e.getItemCode());
+            if (a - e.getBuyCnt() < 0){
 
-//            int a = sqlSession.selectOne("buyMapper.CntCheck",e.getItemCode());
-//            if (a - e.getBuyCnt() > 0){
-//
-//                return ;
-//            }
+                return ;
+            }
             sqlSession.update("buyMapper.minusCnt",e);
         }
         sqlSession.insert("buyMapper.insertBuy",buyVO);
         sqlSession.insert("buyMapper.insertBuyDetails",buyVO);
         sqlSession.delete("buyMapper.deleteCart",buyVO);
-
+        sqlSession.update("buyMapper.statusChange");
 //        장바구니 구매시 재고 마이너스(쿼리에서)
 //        sqlSession.update("buyMapper.minusCnts",buyVO);
 
@@ -52,12 +51,16 @@ public class BuyServiceImpl implements BuyService {
         sqlSession.insert("buyMapper.insertBuy",buyVO);
         sqlSession.insert("buyMapper.insertBuyDetail",buyDetailVO);
         sqlSession.update("buyMapper.minusCnt",buyDetailVO);
+        sqlSession.update("buyMapper.statusChange");
+
     }
 
     @Override
     public List<BuyVO> selectBuyList(String memberId) {
        return sqlSession.selectList("buyMapper.selectBuyList",memberId);
     }
+
+
 
 
 }

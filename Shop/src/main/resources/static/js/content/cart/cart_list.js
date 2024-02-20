@@ -117,11 +117,20 @@ function chkDelete(){
     }
 }
 
-function chkBuy(){
+function chkBuy(items){
+    
     const chks = document.querySelectorAll('.chk:checked');
     if(chks.length == 0){
         alert('구매할 상품을 선택하세요.');
         return;
+    }
+    for(const e of items){
+        
+        if(e.itemStock-e.cartCnt < 0){
+            alert(`재고가 부족합니다.\n상품명 : ${e.itemName}\n남은 수량 : ${e.itemStock}`);
+            return;
+        }
+        
     }
     const cartCodeList = [];
     for(const chk of chks){

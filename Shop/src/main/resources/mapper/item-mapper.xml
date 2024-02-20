@@ -58,6 +58,7 @@
             ,ITEM_NAME
             ,ITEM_PRICE
             ,ATTACHED_FILE_NAME
+            ,ITEM_STOCK
 
             FROM SHOP_ITEM S INNER JOIN ITEM_IMAGE I
             ON S.ITEM_CODE = I.ITEM_CODE

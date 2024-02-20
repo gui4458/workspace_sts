@@ -33,6 +33,7 @@
                         <col width="10%">
                         <col width="*">
                     </colgroup>
+                    
                     <thead>
                         <tr>
                             <td>NO</td>
@@ -100,7 +101,7 @@
             </div>
             <div class="row">
                 <div class="offset-5 col-1 d-grid">
-                    <input type="button" class="btn btn-primary" value="선택 구매" onclick="chkBuy()">
+                    <input type="button" class="btn btn-primary" value="선택 구매" th:onclick="chkBuy([[${items}]])">
                 </div>
                 <div class="col-1 d-grid">
                     <input type="button" class="btn btn-primary" value="선택 삭제" onclick="chkDelete()">

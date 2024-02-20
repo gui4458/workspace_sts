@@ -115,14 +115,13 @@
         SET ITEM_STOCK = ITEM_STOCK - #{buyCnt}
         WHERE ITEM_CODE = #{itemCode}
     </update>
-<!-- 장바구니 구매 시 재고 마이너스-->
-<!--    <update id="minusCnts">-->
-<!--        <foreach collection="buyDetailList" item="buy">-->
-<!--            UPDATE SHOP_ITEM-->
-<!--            SET ITEM_STOCK = ITEM_STOCK - #{buy.buyCnt}-->
-<!--            WHERE ITEM_CODE = #{buy.itemCode}-->
-<!--        </foreach>-->
-<!--    </update>-->
+
+    <update id="statusChange">
+        UPDATE SHOP_ITEM
+        SET ITEM_STATUS = 3
+        WHERE ITEM_STOCK = 0
+    </update>
+
 
 </mapper>
 
