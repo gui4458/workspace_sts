@@ -156,4 +156,10 @@ public class AdminController {
 
         return "redirect:/admin/updateItem?itemCode="+itemVO.getItemCode();
     }
+
+    @GetMapping("/memberManage")
+    public String memberManage(){
+
+        return "content/admin/member_manage";
+    }
 }
