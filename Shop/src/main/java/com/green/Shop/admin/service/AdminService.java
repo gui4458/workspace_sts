@@ -4,6 +4,7 @@ import com.green.Shop.buy.vo.BuyVO;
 import com.green.Shop.item.vo.CategoryVO;
 import com.green.Shop.item.vo.ImgVO;
 import com.green.Shop.item.vo.ItemVO;
+import com.green.Shop.member.vo.MemberVO;
 import com.green.Shop.search.vo.SearchVO;
 
 import java.util.List;
@@ -28,4 +29,6 @@ public interface AdminService {
     List<CategoryVO> cateName();
 
     void updateItem(ItemVO itemVO);
+
+    List<MemberVO> selectMemberList();
 }

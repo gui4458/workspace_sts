@@ -3,6 +3,7 @@ package com.green.Shop.admin.service;
 import com.green.Shop.buy.vo.BuyVO;
 import com.green.Shop.item.vo.CategoryVO;
 import com.green.Shop.item.vo.ItemVO;
+import com.green.Shop.member.vo.MemberVO;
 import com.green.Shop.search.vo.SearchVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,10 @@ public class AdminServiceImpl implements AdminService{
 
     public void updateItem(ItemVO itemVO){
         sqlSession.update("adminMapper.updateItem",itemVO);
+    }
+
+    @Override
+    public List<MemberVO> selectMemberList() {
+        return sqlSession.selectList("memberMapper.selectMemberList");
     }
 }

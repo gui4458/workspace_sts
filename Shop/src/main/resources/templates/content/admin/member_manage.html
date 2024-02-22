@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/admin_layout}" >
+    layout:decorate="~{fragment/member_manage_layout}" >
 
 <th:block layout:fragment="content_css">
     <!-- html 파일이 열릴때 같이 실행되는 css -->
@@ -10,7 +10,29 @@
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
-회원관리
+    <div>
+        <div class="h3">회원 목록</div>
+        <div>
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <tr>
+                            <td>NO</td>
+                            <td>ID</td>
+                            <td>이름</td>
+                            <td>가입일</td>
+                        </tr>
+                        <tr th:each="member,state : ${memberList}">
+                            <td>[[${#lists.size(memberList)-state.index}]]</td>
+                            <td>[[${member.memberId}]]</td>
+                            <td>[[${member.memberName}]]</td>
+                            <td>[[${member.joinDate}]]</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </th:block>
 
 <th:block layout:fragment="content_js">

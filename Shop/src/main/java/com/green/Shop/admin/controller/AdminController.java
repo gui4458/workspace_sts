@@ -158,8 +158,9 @@ public class AdminController {
     }
 
     @GetMapping("/memberManage")
-    public String memberManage(){
-
+    public String memberManage(Model model){
+        List<MemberVO> memberList = adminService.selectMemberList();
+        model.addAttribute("memberList",memberList);
         return "content/admin/member_manage";
     }
 }

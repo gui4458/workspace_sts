@@ -49,7 +49,20 @@
         FROM SHOP_MEMBER
         WHERE MEMBER_ID = #{memberId}
         AND MEMBER_PW = #{memberPw}
+    </select>
 
+    <select id="selectMemberList" resultMap="member">
+        SELECT MEMBER_ID
+            ,MEMBER_NAME
+            ,GENDER
+            ,MEMBER_EMAIL
+            ,MEMBER_TEL
+            ,MEMBER_ADDR
+            ,ADDR_DETAIL
+            ,POST_CODE
+            ,JOIN_DATE
+        FROM SHOP_MEMBER
+        ORDER BY JOIN_DATE DESC
     </select>
 
 </mapper>

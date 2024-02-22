@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+    <th:block th:fragment="memberManageSideFragment">
+        <ul class="list-group">
+            <!-- th:classappend="${adminpage == 'buyList' ? 'active' : ''}"  -->
+            <li class="list-group-item joinhover" onclick="location.href='/admin/memberManage';">회원 목록</li>
+            
+        </ul>
+    </th:block>
+</body>
+</html>
