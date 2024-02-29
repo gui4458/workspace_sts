@@ -36,7 +36,7 @@ function insertCart(loginInfo, itemCode) {
             body: new URLSearchParams({
                 // 데이터명 : 데이터값
                 // cartCnt: cnt,
-                   cartCnt : document.querySelector('input[type="number"]').value,
+                cartCnt : document.querySelector('input[type="number"]').value,
                 // memberId: loginInfo.memberId,
                 itemCode : itemCode,
             
