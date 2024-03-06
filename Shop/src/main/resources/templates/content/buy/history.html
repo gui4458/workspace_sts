@@ -27,7 +27,7 @@
                                         th:data-bs-target="${'#collapse_'+state.index}" aria-expanded="true"
                                         aria-controls="panelsStayOpen-collapseOne">
                                         [[${#numbers.formatInteger(#lists.size(buyInfoList)- state.index,2)}]]
-                                         |
+                                        
                                         <th:block th:if="${#lists.size(buyInfo.buyDetailList) &gt;= 2}">
                                             <div class="detailMain"> [[${buyInfo.buyDetailList[0].itemVO.itemName}]] 외
                                                 [[${#lists.size(buyInfo.buyDetailList) - 1}]]개 구매</div>
@@ -74,7 +74,7 @@
                                         </th:block>
                                     </div>
                                 </div>
-                   
+                
 
                 </div>
             </div>
