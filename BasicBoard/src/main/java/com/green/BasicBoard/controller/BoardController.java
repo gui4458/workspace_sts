@@ -120,8 +120,8 @@ public class BoardController {
 
         //로그인한 회원의 아이디
         System.out.println(user);
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
+//        System.out.println(user.getUsername());
+//        System.out.println(user.getPassword());
 
         List<GrantedAuthority> authlist = new ArrayList<>(user.getAuthorities());
         for (GrantedAuthority e : authlist){
