@@ -18,6 +18,11 @@
                             <span class="input-group-text" id="addon-wrapping">아이디</span>
                             <input type="text" name="memberId" th:value="${memberId}" class="form-control" placeholder="ID" aria-label="Username" aria-describedby="addon-wrapping" id="memberId">
                         </div>
+                        
+                            <div th:if="${errorMsg != 'success'}" style="color: red; font-size: 0.9rem;">
+                                [[${errorMsg}]]
+                            </div>
+                        
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text" id="addon-wrapping">비밀번호</span>
                             <input type="password" name="memberPw" class="form-control" placeholder="PW" aria-label="Username" aria-describedby="addon-wrapping" id="memberPw">

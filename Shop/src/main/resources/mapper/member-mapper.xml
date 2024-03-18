@@ -44,11 +44,10 @@
 
     <select id="login" resultMap="member">
         SELECT MEMBER_ID
+            ,MEMBER_PW
             ,MEMBER_ROLL
-            ,MEMBER_NAME
         FROM SHOP_MEMBER
         WHERE MEMBER_ID = #{memberId}
-        AND MEMBER_PW = #{memberPw}
     </select>
 
     <select id="selectMemberList" resultMap="member">
