@@ -31,16 +31,20 @@ public class SecurityConfig {
         security.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         c -> {
-                            c.requestMatchers(
-                                    new AntPathRequestMatcher("/"),
-                                    new AntPathRequestMatcher("/item/list"),
-                                    new AntPathRequestMatcher("/member/join"),
-                                    new AntPathRequestMatcher("/member/login")
-                                    ).permitAll()
-                                    .requestMatchers(
-                                            new AntPathRequestMatcher("/admin/**")
-                                    ).hasRole("ADMIN")
-                                    .anyRequest().authenticated();
+
+                            c.anyRequest().permitAll();
+
+
+//                            c.requestMatchers(
+//                                    new AntPathRequestMatcher("/"),
+//                                    new AntPathRequestMatcher("/item/list"),
+//                                    new AntPathRequestMatcher("/member/join"),
+//                                    new AntPathRequestMatcher("/member/login")
+//                                    ).permitAll()
+//                                    .requestMatchers(
+//                                            new AntPathRequestMatcher("/admin/**")
+//                                    ).hasRole("ADMIN")
+//                                    .anyRequest().authenticated();
                         }
                 ).formLogin(
                         formLogin -> {
