@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- layout:decorate => 이 파일은 fragment 폴더 안의 layout.html과 함께 열리는 파일 -->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/layout}">
+
+<th:block layout:fragment="contentFragment">
+    <div class="container-fluid container">
+        <main class="col-lg-10 px-md-4">
+            <input type="hidden" id="d-day" th:value="${toDay}">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col text-end">
+                                    <input type="date" th:value="${toDay}" onchange="selectDay(this)">
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-xxl-12 col-md-6">
+                                    <div>
+                                        <h2>'실효습도'란?</h2>
+                                    </div>
+                                    <div>
+                                        화재 예방의 목적으로 수일 전부터의 상대습도에 경과 시간에 따른 가중치를 주어서 산출한 목재 등의 건조도를 나타내는 지수를 말합니다.
+                                    </div>
+                                    <div>
+                                        일반적으로 실효습도가 50% 이하가 되면 인화되기 쉽고
+                                    </div>
+                                    <div>
+                                        40% 이하에서는 불이 잘 꺼지지 않으며,
+
+                                    </div>
+                                    <div>
+                                        30% 이하일 경우에는 자연발생적으로 불이 일어날 가능성이 커지게 된다.
+
+                                    </div>
+                                    <div>
+                                        이와 관계하여 실효습도 35%이하가 2일 이상 지속될 것으로 예상될 때 건조주의보를,
+
+                                    </div>
+                                    <div>
+                                        실효습도 25% 이하가 2일 이상 지속될 것으로 예상될 때 건조경보가 발표되고 있다.
+
+                                    </div>
+
+                                    <div>
+                                        He = (1−r)×[H0dt + r H1dt + r2 H2dt+r3 H3dt + r4 H4dt ]r = 0.7
+                                    </div>
+                                    <div>
+                                        * 실효습도(He) = (1−r)×[H0dt + r H1dt + r2 H2dt+r3 H3dt + r4H4dt]
+                                    </div>
+                                    <div>
+                                        r = 0.7
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div>
+                                        He : 실효습도
+                                    </div>
+                                    <div>
+                                        H0d : 당일의 상대습도
+                                    </div>
+                                    <div>
+                                        H1d : 1일 전의 상대습도
+                                    </div>
+                                    <div>
+                                        H2d : 2일 전의 상대습도
+                                    </div>
+                                    <div>
+                                        H3d : 3일 전의 상대습도
+                                    </div>
+                                    <div>
+                                        H4d : 4일 전의 상대습도
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </main>
+    </div>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <script src="/js/efh.js"></script>
+</th:block>
+
+</html>

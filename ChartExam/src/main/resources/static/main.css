@@ -16,6 +16,7 @@
 }
 
 .layer{
+    margin-bottom: 20px;
     border: 1px solid #dddddd;
     border-radius: 10px;
     background-color: white;
